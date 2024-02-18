@@ -1,4 +1,4 @@
-@extends('Admin.admin_dashboard')
+@extends('admin.admin_dashboard')
 @section('admin')
     <div class="page-content">
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">

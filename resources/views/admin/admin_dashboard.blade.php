@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="NobleUI">
+    <meta name="author" content="sb">
     <meta name="keywords"
           content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <title>Admin Panel - Realstate</title>
+    <title>Admin Panel - RealEstate</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,10 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{asset('backend/assets/vendors/flatpickr/flatpickr.min.css')}}">
     <!-- End plugin css for this page -->
+
+    <!-- Plugin css for datatables -->
+    <link rel="stylesheet" href="{{asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css')}}">
+    <!-- End plugin css for datatables -->
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('backend/assets/fonts/feather-font/css/iconfont.css')}}">
@@ -40,17 +44,17 @@
 <div class="main-wrapper">
 
     <!-- partial:partials/_sidebar.html -->
-@include('Admin.partial.sidebar')
+@include('admin.partial.sidebar')
 <!-- partial -->
 
     <div class="page-wrapper">
 
         <!-- partial:partials/_navbar.html -->
-    @include('Admin.partial.topbar')
+    @include('admin.partial.topbar')
     <!-- partial -->
     @yield('admin')
     <!-- partial:partials/_footer.html -->
-    @include('Admin.partial.footer')
+    @include('admin.partial.footer')
     <!-- partial -->
 
     </div>
@@ -64,6 +68,12 @@
 <script src="{{asset('backend/assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
 <script src="{{asset('backend/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
 <!-- End plugin js for this page -->
+
+<!-- Plugin js for datatables -->
+<script src="{{asset('backend/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
+<script src="{{asset('backend/assets/js/data-table.js')}}"></script>
+<!-- End plugin js for datatables -->
 
 <!-- inject:js -->
 <script src="{{asset('backend/assets/vendors/feather-icons/feather.min.js')}}"></script>

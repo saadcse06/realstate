@@ -17,6 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+
         return view('auth.login');
     }
 
@@ -40,7 +41,9 @@ class AuthenticatedSessionController extends Controller
         }
         //dd($request->user()->role);
         //return redirect()->intended(RouteServiceProvider::HOME);
-        return redirect()->intended($url);
+        $msg=array('message'=>'User Login Successfully', 'alert-type'=>'success');
+        //return back()->with($msg);
+        return redirect()->intended($url)->with($msg);
     }
 
     /**
