@@ -20,28 +20,37 @@
             </li>
             <li class="nav-item nav-category">RealEstate</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
+                <a class="nav-link" data-bs-toggle="collapse" href="#type" role="button" aria-expanded="false" aria-controls="type">
+                    <i class="link-icon" data-feather="octagon"></i>
                     <span class="link-title">Property Type</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="emails">
+                <div class="collapse" id="type">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{route('type.list')}}" class="nav-link">All Property Type</a>
+                            <a href="{{ route('type.list') }}" class="nav-link">All Property Type</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('type.add')}}" class="nav-link">Add Property Type</a>
+                            <a href="{{ route('type.add' )}}" class="nav-link">Add Property Type</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a href="pages/apps/calendar.html" class="nav-link">
-                    <i class="link-icon" data-feather="calendar"></i>
-                    <span class="link-title">Calendar</span>
+                <a class="nav-link" data-bs-toggle="collapse" href="#amenity" role="button" aria-expanded="false" aria-controls="amenity">
+                    <i class="link-icon" data-feather="square"></i>
+                    <span class="link-title">Amenity</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
+                <div class="collapse" id="amenity">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('amenity.list' )}}" class="nav-link">All Amenity</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
+
             <li class="nav-item nav-category">Components</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
@@ -52,7 +61,7 @@
                 <div class="collapse" id="uiComponents">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/ui-components/accordion.html" class="nav-link">Accordion</a>
+                            <a href="{{ route('amenity.add') }}" class="nav-link">Add Amenity</a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>

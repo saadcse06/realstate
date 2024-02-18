@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Hash;
@@ -28,10 +29,11 @@ class AdminController extends Controller
         $data->email=$request->email;
         $data->phone=$request->phone;
         $data->address=$request->address;
-        if(!empty($data->photo)){
-            if($request->file('photo')){
+        if($request->file('photo')){
                 $uploadImg=$request->file('photo');
-                @unlink(public_path($data->photo));
+                if(!empty($data->photo)){
+                    @unlink(public_path($data->photo));
+                }
                 $imgName=hexdec(uniqid()).'.'.$uploadImg->getClientOriginalExtension();
                 $manager = new ImageManager(new Driver());
                 $img = $manager->read($uploadImg);
@@ -40,7 +42,7 @@ class AdminController extends Controller
                 $imgUrl='/upload/admin_img/'.$imgName;
                 $data->photo=$imgUrl;
             }
-        }
+
         $data->save();
         $msg=array('message'=>'admin Profile Updated Sucessfully', 'alert-type'=>'success');
         return redirect()->back()->with($msg);

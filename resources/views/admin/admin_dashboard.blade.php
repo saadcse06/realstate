@@ -84,6 +84,11 @@
 <script src="{{asset('backend/assets/js/dashboard-dark.js')}}"></script>
 <!-- End custom js for this page -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{{--Add Sweetalert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{asset('backend/assets/js/code/code.js')}}"></script>
+<script src="{{asset('backend/assets/js/code/validate.min.js')}}"></script>
+
 <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Backend\PropertyTypeController;
+use App\Http\Controllers\Backend\AmenityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ Route::middleware(['auth','role:agent'])->group(function (){
 });
 //end agent group middleware
 
-//realstate group controller
+//PropertyTypeController group controller
 Route::middleware(['auth','role:admin'])->group(function (){
     Route::controller(PropertyTypeController::class)->group(function (){
       Route::get('/type/index','type_list')->name('type.list');
@@ -60,7 +61,20 @@ Route::middleware(['auth','role:admin'])->group(function (){
       Route::get('/type/edit/{id}','edit_type')->name('type.edit');
       Route::post('/type/store','store_type')->name('type.store');
       Route::post('/type/update','update_type')->name('type.update');
-      Route::post('/type/destroy','destroy_type')->name('type.destroy');
+      Route::get('/type/destroy/{id}','destroy_type')->name('type.destroy');
     });
 });
-//end group controller
+//end realstate group controller
+
+//Amenity group controller
+Route::middleware(['auth','role:admin'])->group(function (){
+    Route::controller(AmenityController::class)->group(function (){
+        Route::get('/amentiy/list','amentiy_list')->name('amenity.list');
+        Route::get('/amentiy/add','add_amentiy')->name('amenity.add');
+        Route::get('/amentiy/edit/{id}','edit_amenity')->name('amenity.edit');
+        Route::post('/amentiy/store','store_amenity')->name('amenity.store');
+        Route::post('/amentiy/update','update_amentiy')->name('amenity.update');
+        Route::get('/amentiy/destroy/{id}','destroy_amentiy')->name('amenity.destroy');
+    });
+});
+//end realstate group controller

@@ -35,8 +35,21 @@ class PropertyTypeController extends Controller
     }
     public function update_type(Request $request){
         $request->validate([
-            'type_name'=>'required|max:55|unique:property_types',
+            'type_name'=>'required|max:55',
             'type_icon'=>'required',
         ]);
+       // dd($request);
+        $propertyType = PropertyType::find($request->id);
+        $propertyType->type_name=$request->type_name;
+        $propertyType->type_icon=$request->type_icon;
+        $propertyType->save();
+        $msg=array('message'=>'Property Type Updated Successfully', 'alert-type'=>'success');
+        return redirect()->route('type.list')->with($msg);
+    }
+    public function destroy_type($id){
+
+        PropertyType::findOrFail($id)->delete();
+        $msg=array('message'=>'Property Type Deleted Successfully', 'alert-type'=>'success');
+        return redirect()->back()->with($msg);
     }
 }
