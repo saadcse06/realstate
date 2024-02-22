@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\AmenityController;
-
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\GroupController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,3 +79,27 @@ Route::middleware(['auth','role:admin'])->group(function (){
     });
 });
 //end realstate group controller
+
+//Group Route
+Route::middleware(['auth','role:admin'])->group(function (){
+    Route::controller(GroupController::class)->group(function (){
+        Route::get('/group/list','group_list')->name('group.list');
+        Route::get('/group/add','group_add')->name('group.add');
+        Route::post('/group/store','store')->name('group.store');
+        Route::get('/group/edit/{id}','group_edit')->name('group.edit');
+        Route::post('/group/update/','group_update')->name('group.update');
+        Route::get('/group/destroy/{id}','destroy_group')->name('group.destroy');
+    });
+});
+
+//Permission Type Route
+Route::middleware(['auth','role:admin'])->group(function (){
+    Route::controller(RoleController::class)->group(function (){
+        Route::get('/permission/list','permission_list')->name('permission.list');
+        Route::get('/permission/add','permission_add')->name('permission.add');
+        Route::post('/permission/store','permission_store')->name('permission.store');
+        Route::get('/permission/edit/{id}','permission_edit')->name('permission.edit');
+        Route::post('/permission/update','permission_update')->name('permission.update');
+        Route::get('/permission/destroy/{id}','destroy_permission')->name('permission.destroy');
+    });
+});

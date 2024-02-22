@@ -11,12 +11,12 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Add Amenity</h6>
-                            <form id="myForm" class="forms-sample" method="post" action="{{route('amenity.store')}}">
+                            <form id="amenityForm" class="forms-sample" method="post" action="{{ route('amenity.store')m}}">
                                 @csrf
                                 <div class="form-group mb-3">
-                                    {{--<label for="Amenityname" class="form-label">Amenity Name</label>--}}
+                                    <label for="Amenity Name" class="form-label">Amenity Name</label>
                                     <input type="text" name="amenitis_name" id="amenitis_name" value="{{old('amenitis_name')}}" class="form-control"
-                                           autocomplete="off" required>
+                                           autocomplete="off">
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2">Save</button>
                             </form>
@@ -31,7 +31,7 @@
     {{--start form validation by JS--}}
     <script type="text/javascript">
         $(document).ready(function (){
-            $('#myForm').validate({
+            $('#amenityForm').validate({
                 rules: {
                     amenitis_name: {
                         required : true,

@@ -10,14 +10,13 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Edit Amenity</h6>
-                            <form id="myForm" class="forms-sample" method="post" action="{{route('amenity.update')}}">
+                            <h6 class="card-title">Edit Group</h6>
+                            <form id="grpForm" class="forms-sample" method="post" action="{{ route('group.update') }}">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <input type="hidden" name="id" value="{{ $group->id }}">
                                 <div class="form-group mb-3">
-                                    <label for="Typename" class="form-label">Amenity Name</label>
-                                    <input type="text" name="amenitis_name" id="amenitis_name" value="{{ $data->amenitis_name }}" class="form-control"
-                                           autocomplete="off">
+                                    <label for="Group Name" class="form-label">Group Name</label>
+                                    <input type="text" name="group_name" id="group_name" value="{{ $group->group_name }}" class="form-control">
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>
@@ -32,16 +31,16 @@
     {{--start form validation by JS--}}
     <script type="text/javascript">
         $(document).ready(function (){
-            $('#myForm').validate({
+            $('#grpForm').validate({
                 rules: {
-                    amenitis_name: {
+                    group_name: {
                         required : true,
                     },
 
                 },
                 messages :{
-                    amenitis_name: {
-                        required : 'Please Enter Amenity Name',
+                    group_name: {
+                        required : 'Please Enter Group Name',
                     },
 
 

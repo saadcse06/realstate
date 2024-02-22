@@ -18,15 +18,15 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">RealEstate</li>
+            <li class="nav-item nav-category">Property</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#type" role="button" aria-expanded="false" aria-controls="type">
+                <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false" aria-controls="property">
                     <i class="link-icon" data-feather="octagon"></i>
                     <span class="link-title">Property Type</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="type">
-                    <ul class="nav sub-menu">
+                <div class="collapse" id="property">
+                    <ul class="nav sub-menu" >
                         <li class="nav-item">
                             <a href="{{ route('type.list') }}" class="nav-link">All Property Type</a>
                         </li>
@@ -36,19 +36,20 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item nav-category">Amenity</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#mail" role="button" aria-expanded="false" aria-controls="mail">
+                <a class="nav-link" data-bs-toggle="collapse" href="#amenity" role="button" aria-expanded="false" aria-controls="amenity">
                     <i class="link-icon" data-feather="square"></i>
                     <span class="link-title">Amenity</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="mail">
-                    <ul class="nav sub-menu" id="submenu">
+                <div class="collapse" id="amenity">
+                    <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{ route('amenity.list' )}}" class="nav-link" >All Amenity</a>
                         </li>
-                        <li class="nav-item @if(\Illuminate\Support\Facades\Route::currentRouteName()=='amenity.add') show @endif">
-                            <a href="{{ route('amenity.add') }}">Add Amenity</a>
+                        <li class="nav-item">
+                            <a href="{{ route('amenity.add' )}}" class="nav-link" >Add Amenity</a>
                         </li>
                     </ul>
                 </div>
@@ -56,35 +57,35 @@
 
             <li class="nav-item nav-category">Roles & Permission</li>
             <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
+                    <i class="link-icon" data-feather="anchor"></i>
+                    <span class="link-title">Group</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="advancedUI">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('group.list') }}" class="nav-link">Group List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('group.add') }}" class="nav-link">Add Group</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#roles" role="button" aria-expanded="false" aria-controls="roles">
                     <i class="link-icon" data-feather="feather"></i>
                     <span class="link-title">Roles & Permission</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="roles">
-                    <ul class="nav sub-menu" id="submenu">
+                    <ul class="nav sub-menu">
                         <li class="nav-item">
-                            {{--<a href="{{ route('amenity.add') }}" class="nav-link">All Permission</a>--}}
+                            <a href="{{ route('permission.list') }}" class="nav-link">All Permission</a>
                         </li>
                         <li class="nav-item">
-                            {{--<a href="{{ route('amenity.add') }}" class="nav-link">Add Permission</a>--}}
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
-                    <i class="link-icon" data-feather="anchor"></i>
-                    <span class="link-title">Advanced UI</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="advancedUI">
-                    <ul class="nav sub-menu" id="submenu">
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/cropper.html" class="nav-link">Cropper</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
+                            <a href="{{ route('permission.add') }}" class="nav-link">Add Permission</a>
                         </li>
                     </ul>
                 </div>

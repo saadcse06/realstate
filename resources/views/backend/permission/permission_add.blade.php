@@ -10,16 +10,24 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Edit Amenity</h6>
-                            <form id="myForm" class="forms-sample" method="post" action="{{route('amenity.update')}}">
+                            <h6 class="card-title">Add Permission</h6>
+                            <form id="perForm" class="forms-sample" method="post" action="{{route('permission.store')}}">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $data->id }}">
                                 <div class="form-group mb-3">
-                                    <label for="Typename" class="form-label">Amenity Name</label>
-                                    <input type="text" name="amenitis_name" id="amenitis_name" value="{{ $data->amenitis_name }}" class="form-control"
+                                    <label for="GroupName" class="form-label">Group Name</label>
+                                    <select name="group_name" id="group_name" class="form-select">
+                                        <option disabled selected>Select Group</option>
+                                        @foreach($group as $row)
+                                            <option value="{{$row->group_name}}">{{$row->group_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="PermissionName" class="form-label">Permission Name</label>
+                                    <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control"
                                            autocomplete="off">
                                 </div>
-                                <button type="submit" class="btn btn-primary me-2">Update</button>
+                                <button type="submit" class="btn btn-primary me-2">Save</button>
                             </form>
 
                         </div>
@@ -32,16 +40,22 @@
     {{--start form validation by JS--}}
     <script type="text/javascript">
         $(document).ready(function (){
-            $('#myForm').validate({
+            $('#perForm').validate({
                 rules: {
-                    amenitis_name: {
+                    name: {
                         required : true,
                     },
+                    group_name: {
+                        required : true,
+                    }
 
                 },
                 messages :{
-                    amenitis_name: {
-                        required : 'Please Enter Amenity Name',
+                    name: {
+                        required : 'Please Enter Permission Name',
+                    },
+                    group_name: {
+                        required : 'Please Select Group Name',
                     },
 
 
