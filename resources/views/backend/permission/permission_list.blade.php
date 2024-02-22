@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('permission.add')}}" class="btn btn-inverse-info">Add Permission</a>
+                <a href="{{route('permission.add')}}" class="btn btn-inverse-info">Add Permission</a>&nbsp;&nbsp;&nbsp;
+                <a href="{{route('permission.import')}}" class="btn btn-inverse-warning">Import</a>&nbsp;&nbsp;&nbsp;
+                <a href="{{route('permission.export')}}" class="btn btn-inverse-danger">Export</a>
             </ol>
         </nav>
 
@@ -29,8 +31,10 @@
                                         <td>{{$row->name }}</td>
                                         <td>{{$row->group_name  }}</td>
                                         <td>
-                                            <a href="{{ route('permission.edit',$row->id) }}" class="btn btn-inverse-warning">Edit</a>
-                                            <a href="{{ route('permission.destroy',$row->id )}}" class="btn btn-inverse-danger" id="delete">Delete</a>
+                                            <a href="{{ route('permission.edit',$row->id) }}"
+                                               class="btn btn-inverse-warning">Edit</a>
+                                            <a href="{{ route('permission.destroy',$row->id )}}"
+                                               class="btn btn-inverse-danger" id="delete">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

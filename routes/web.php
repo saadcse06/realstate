@@ -101,5 +101,7 @@ Route::middleware(['auth','role:admin'])->group(function (){
         Route::get('/permission/edit/{id}','permission_edit')->name('permission.edit');
         Route::post('/permission/update','permission_update')->name('permission.update');
         Route::get('/permission/destroy/{id}','destroy_permission')->name('permission.destroy');
+        Route::get('/permission/import','permission_import')->name('permission.import');
+        Route::get('/permission/export','permission_export')->name('permission.export');
     });
 });
