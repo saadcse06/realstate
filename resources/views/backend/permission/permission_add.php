@@ -11,7 +11,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Add Permission</h6>
-                            <form id="perForm" class="forms-sample" method="post" action="{{route('permission.store')}}">
+                            <form id="perForm" class="forms-sample" method="post"
+                                  action="{{route('permission.store')}}">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="GroupName" class="form-label">Group Name</label>
@@ -24,7 +25,8 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="PermissionName" class="form-label">Permission Name</label>
-                                    <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control"
+                                    <input type="text" name="name" id="name" value="{{old('name')}}"
+                                           class="form-control"
                                            autocomplete="off">
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2">Save</button>
@@ -39,36 +41,36 @@
     </div>
     {{--start form validation by JS--}}
     <script type="text/javascript">
-        $(document).ready(function (){
+        $(document).ready(function () {
             $('#perForm').validate({
                 rules: {
                     name: {
-                        required : true,
+                        required: true,
                     },
                     group_name: {
-                        required : true,
+                        required: true,
                     }
 
                 },
-                messages :{
+                messages: {
                     name: {
-                        required : 'Please Enter Permission Name',
+                        required: 'Please Enter Permission Name',
                     },
                     group_name: {
-                        required : 'Please Select Group Name',
+                        required: 'Please Select Group Name',
                     },
 
 
                 },
-                errorElement : 'span',
-                errorPlacement: function (error,element) {
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight : function(element, errorClass, validClass){
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight : function(element, errorClass, validClass){
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 },
             });

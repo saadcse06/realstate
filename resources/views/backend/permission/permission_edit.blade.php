@@ -10,8 +10,9 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Add Permission</h6>
-                            <form id="perForm" class="forms-sample" method="post" action="{{route('permission.update')}}">
+                            <h6 class="card-title">Edit Permission</h6>
+                            <form id="perForm" class="forms-sample" method="post"
+                                  action="{{route('permission.update')}}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                 <div class="form-group mb-3">
@@ -19,13 +20,15 @@
                                     <select name="group_name" id="group_name" class="form-select">
                                         <option disabled selected>Select Group</option>
                                         @foreach($group as $row)
-                                            <option value="{{$row->group_name}}" @if($row->group_name==$data->group_name) selected @endif>{{$row->group_name}}</option>
+                                            <option value="{{$row->group_name}}"
+                                                    @if($row->group_name==$data->group_name) selected @endif>{{$row->group_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="PermissionName" class="form-label">Permission Name</label>
-                                    <input type="text" name="name" id="name" value="{{ $data->name }}" class="form-control"
+                                    <input type="text" name="name" id="name" value="{{ $data->name }}"
+                                           class="form-control"
                                            autocomplete="off">
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2">Update</button>
@@ -40,36 +43,36 @@
     </div>
     {{--start form validation by JS--}}
     <script type="text/javascript">
-        $(document).ready(function (){
+        $(document).ready(function () {
             $('#perForm').validate({
                 rules: {
                     name: {
-                        required : true,
+                        required: true,
                     },
                     group_name: {
-                        required : true,
+                        required: true,
                     }
 
                 },
-                messages :{
+                messages: {
                     name: {
-                        required : 'Please Enter Permission Name',
+                        required: 'Please Enter Permission Name',
                     },
                     group_name: {
-                        required : 'Please Select Group Name',
+                        required: 'Please Select Group Name',
                     },
 
 
                 },
-                errorElement : 'span',
-                errorPlacement: function (error,element) {
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight : function(element, errorClass, validClass){
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight : function(element, errorClass, validClass){
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 },
             });

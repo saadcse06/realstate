@@ -92,7 +92,7 @@ Route::middleware(['auth','role:admin'])->group(function (){
     });
 });
 
-//Permission Type Route
+//Permission Route
 Route::middleware(['auth','role:admin'])->group(function (){
     Route::controller(RoleController::class)->group(function (){
         Route::get('/permission/list','permission_list')->name('permission.list');
@@ -102,6 +102,21 @@ Route::middleware(['auth','role:admin'])->group(function (){
         Route::post('/permission/update','permission_update')->name('permission.update');
         Route::get('/permission/destroy/{id}','destroy_permission')->name('permission.destroy');
         Route::get('/permission/import','permission_import')->name('permission.import');
+        Route::post('/permission/store_import_data','store_import_data')->name('permission.store_import_data');
         Route::get('/permission/export','permission_export')->name('permission.export');
+    });
+});
+
+//Role Route
+Route::middleware(['auth','role:admin'])->group(function (){
+    Route::controller(RoleController::class)->group(function (){
+        Route::get('/role/list','role_list')->name('role.list');
+        Route::get('/role/add','role_add')->name('role.add');
+        Route::post('/role/store','role_store')->name('role.store');
+        Route::get('/role/edit/{id}','role_edit')->name('role.edit');
+        Route::post('/role/update','role_update')->name('role.update');
+        Route::get('/role/destroy/{id}','destroy_role')->name('role.destroy');
+        Route::get('/role/add_role_permission','add_role_permission')->name('role.add.permission');
+        Route::post('/role/role_permission_store','role_permission_store')->name('role.permission.store');
     });
 });

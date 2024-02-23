@@ -76,7 +76,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#roles" role="button" aria-expanded="false" aria-controls="roles">
                     <i class="link-icon" data-feather="feather"></i>
-                    <span class="link-title">Roles & Permission</span>
+                    <span class="link-title">Permission</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="roles">
@@ -86,6 +86,27 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('permission.add') }}" class="nav-link">Add Permission</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#roles" role="button" aria-expanded="false" aria-controls="roles">
+                    <i class="link-icon" data-feather="activity"></i>
+                    <span class="link-title">Role</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="roles">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('role.list') }}" class="nav-link">All Role</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('role.add') }}" class="nav-link">Add Role</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('role.add.permission') }}" class="nav-link">Add Roles in Permission</a>
                         </li>
                     </ul>
                 </div>

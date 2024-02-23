@@ -10,15 +10,17 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Add Amenity</h6>
-                            <form id="amenityForm" class="forms-sample" method="post" action="{{ route('amenity.store')}}">
+                            <h6 class="card-title">Edit Permission</h6>
+                            <form id="perForm" class="forms-sample" method="post" action="{{route('role.update')}}">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $data->id }}">
                                 <div class="form-group mb-3">
-                                    <label for="Amenity Name" class="form-label">Amenity Name</label>
-                                    <input type="text" name="amenitis_name" id="amenitis_name" value="{{old('amenitis_name')}}" class="form-control"
+                                    <label for="PermissionName" class="form-label">Role Name</label>
+                                    <input type="text" name="name" id="name" value="{{ $data->name }}"
+                                           class="form-control"
                                            autocomplete="off">
                                 </div>
-                                <button type="submit" class="btn btn-primary me-2">Save</button>
+                                <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>
 
                         </div>
@@ -30,30 +32,27 @@
     </div>
     {{--start form validation by JS--}}
     <script type="text/javascript">
-        $(document).ready(function (){
-            $('#amenityForm').validate({
+        $(document).ready(function () {
+            $('#perForm').validate({
                 rules: {
-                    amenitis_name: {
-                        required : true,
+                    name: {
+                        required: true,
                     },
-
                 },
-                messages :{
-                    amenitis_name: {
-                        required : 'Please Enter Amenity Name',
+                messages: {
+                    name: {
+                        required: 'Please Enter Permission Name',
                     },
-
-
                 },
-                errorElement : 'span',
-                errorPlacement: function (error,element) {
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight : function(element, errorClass, validClass){
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight : function(element, errorClass, validClass){
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 },
             });
