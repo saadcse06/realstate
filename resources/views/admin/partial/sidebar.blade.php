@@ -74,12 +74,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#roles" role="button" aria-expanded="false" aria-controls="roles">
+                <a class="nav-link" data-bs-toggle="collapse" href="#permissions" role="button" aria-expanded="false" aria-controls="permissions">
                     <i class="link-icon" data-feather="feather"></i>
                     <span class="link-title">Permission</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="roles">
+                <div class="collapse" id="permissions">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{ route('permission.list') }}" class="nav-link">All Permission</a>
@@ -106,7 +106,28 @@
                             <a href="{{ route('role.add') }}" class="nav-link">Add Role</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('role.add.permission') }}" class="nav-link">Add Roles in Permission</a>
+                            <a href="{{ route('all.role.permission') }}" class="nav-link">All Roles In Permission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('role.add.permission') }}" class="nav-link">Add Roles In Permission</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#admins" role="button" aria-expanded="false" aria-controls="admins">
+                    <i class="link-icon" data-feather="activity"></i>
+                    <span class="link-title">Manage Admin User</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="admins">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.list') }}" class="nav-link">All Admin User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.add') }}" class="nav-link">Add Admin User</a>
                         </li>
                     </ul>
                 </div>

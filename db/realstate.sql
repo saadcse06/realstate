@@ -245,7 +245,7 @@ CREATE TABLE `users` (
   `photo` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `address` text DEFAULT NULL,
-  `role` enum('admin','student','user','agent') NOT NULL DEFAULT 'user',
+  `role` enum('adminuser','student','user','agent') NOT NULL DEFAULT 'user',
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -259,9 +259,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `address`, `role`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', '/upload/admin_img/1791474201011629.jpg', '01723207577', 'SB', 'admin', 'active', NULL, '$2y$12$Y7DZk09fIA2DM/riotb2c.RK6s1sD8TNEQTwrgN2MqULma/V1ON/K', NULL, NULL, '2024-02-20 20:35:34'),
+(1, 'Admin', 'adminuser', 'adminuser@gmail.com', '/upload/admin_img/1791474201011629.jpg', '01723207577', 'SB', 'adminuser', 'active', NULL, '$2y$12$Y7DZk09fIA2DM/riotb2c.RK6s1sD8TNEQTwrgN2MqULma/V1ON/K', NULL, NULL, '2024-02-20 20:35:34'),
 (2, 'Delilah Daniel', 'alessandra.gusikowski', 'trent41@example.net', 'https://via.placeholder.com/60x60.png/002288?text=nesciunt', '+1-774-701-2799', '99696 Anna Plains\nAlanisfurt, NY 04214-2873', 'user', 'inactive', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', 'EI1LkGbw8y', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
-(3, 'Mrs. Rae Jenkins II', 'tgraham', 'mozell.leuschke@example.net', 'https://via.placeholder.com/60x60.png/00cc88?text=esse', '+15614559822', '81281 Emerson Square\nDachshire, HI 31716', 'admin', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', '3KGdL0kKCw', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
+(3, 'Mrs. Rae Jenkins II', 'tgraham', 'mozell.leuschke@example.net', 'https://via.placeholder.com/60x60.png/00cc88?text=esse', '+15614559822', '81281 Emerson Square\nDachshire, HI 31716', 'adminuser', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', '3KGdL0kKCw', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (4, 'Elmore Waelchi', 'bkassulke', 'jacobi.helen@example.com', 'https://via.placeholder.com/60x60.png/00cc22?text=optio', '774.810.8701', '390 Meghan Prairie Apt. 971\nNew Medabury, MD 75073-5900', 'agent', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', 'be9lyt2asG', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (5, 'Malcolm Ebert', 'schuster.maegan', 'delfina73@example.com', 'https://via.placeholder.com/60x60.png/00bb44?text=natus', '+1-773-814-5081', '955 Tremaine Mountains Suite 338\nTurnerbury, SC 09091-5536', 'student', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', '5Vvfwl8lOy', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (6, 'Dedric Jacobs', 'heber49', 'mayer.vance@example.com', 'https://via.placeholder.com/60x60.png/00ccff?text=harum', '+16829782172', '815 Isobel Ways\nOletastad, HI 13802-3804', 'user', 'inactive', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', 'hzbsoPgGEr', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),

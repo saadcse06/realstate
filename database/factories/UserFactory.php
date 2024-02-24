@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'photo'=>fake()->imageUrl('60','60'),
             'phone'=>fake()->phoneNumber,
             'address'=>fake()->address,
-            'role'=>fake()->randomElement(['admin','student','user','agent']),
+            'role'=>fake()->randomElement(['adminuser','student','user','agent']),
             'status'=>fake()->randomElement(['active','inactive']),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('12345678'),

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class AdminController extends Controller
 {
     public function admin_dashboard(){
@@ -83,5 +86,89 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
         $msg=array('message'=>'User Logout Successfully', 'alert-type'=>'success');
         return redirect('/admin/login')->with($msg);
+    }
+
+    //Admin Use Method
+
+    public function admin_user_list(){
+      $allAdmin = User::where('role','admin')->get();
+      //dd($allAdmin);
+      return view('backend.adminuser.admin_list',compact('allAdmin'));
+    }
+
+    public function admin_user_add(){
+        $role = Role::all();
+        return view('backend.adminuser.admin_add',compact('role'));
+    }
+    public function admin_user_store(Request $request){
+        $request->validate([
+            'username'=>'required|unique:users',
+            'name'=>'required',
+            'email'=>'required|unique:users',
+            'phone'=>'required',
+            'password'=>'required',
+        ]);
+        $user = new User();
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role = 'admin';
+        $user->status = 'active';
+        $user->save();
+        $data[] = $request->roles;
+        $roles = Role::whereIn('id', $data)->get();
+        //print_r($roles);die;
+        if($roles){
+            $user->assignRole($roles);
+        }
+        $msg=array('message'=>'New Admin User Create Successfully', 'alert-type'=>'success');
+        return redirect()->route('admin.list')->with($msg);
+    }
+
+    public function admin_user_edit($id){
+        $user = User::findOrFail($id);
+        $role = Role::all();
+        return view('backend.adminuser.admin_user_edit',compact('user','role'));
+    }
+
+    public function admin_user_update(Request $request){
+        $request->validate([
+            'username'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            //'password'=>'required',
+        ]);
+        $user = User::findOrFail($request->id);
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->role = 'admin';
+        $user->status = ($request->input('status')) ? 'active' : 'inactive';
+        $user->save();
+        $data[] = $request->roles;
+        $roles = Role::whereIn('id', $data)->get();
+        $user->roles()->detach();
+        if($roles){
+            $user->assignRole($roles);
+        }
+        //return response()->json($user);
+        $msg=array('message'=>'Admin User Updated Successfully', 'alert-type'=>'success');
+        return redirect()->route('admin.list')->with($msg);
+
+    }
+
+    public function admin_user_destroy($id){
+        $user = User::findOrFail($id);
+        if(!is_null($user)){
+            $user->delete();
+        }
+        $msg=array('message'=>'Admin User Deleted Successfully', 'alert-type'=>'success');
+        return redirect()->back()->with($msg);
     }
 }

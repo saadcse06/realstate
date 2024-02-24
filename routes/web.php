@@ -116,7 +116,23 @@ Route::middleware(['auth','role:admin'])->group(function (){
         Route::get('/role/edit/{id}','role_edit')->name('role.edit');
         Route::post('/role/update','role_update')->name('role.update');
         Route::get('/role/destroy/{id}','destroy_role')->name('role.destroy');
+        Route::get('/role/all_role_permission','all_role_permission')->name('all.role.permission');
         Route::get('/role/add_role_permission','add_role_permission')->name('role.add.permission');
         Route::post('/role/role_permission_store','role_permission_store')->name('role.permission.store');
+        Route::get('/role/edit_role_permission/{id}','edit_role_permission')->name('edit.role.permission');
+        Route::post('/role/update_role_permission','update_role_permission')->name('update.role.permission');
+        Route::get('/role/destroy_role_permission/{id}','destroy_role_permission')->name('destroy.role.permission');
     });
 });
+
+//Admin User Route
+//Route::middleware(['auth','role:admin'])->group(function (){
+    Route::controller(AdminController::class)->group(function (){
+        Route::get('/admin/list','admin_user_list')->name('admin.list');
+        Route::get('/admin/add','admin_user_add')->name('admin.add');
+        Route::post('/admin/store','admin_user_store')->name('admin.store');
+        Route::get('/admin/edit/{id}','admin_user_edit')->name('admin.edit');
+        Route::get('/admin/delete/{id}','admin_user_destroy')->name('admin.destroy');
+        Route::post('/admin/update','admin_user_update')->name('admin.update');
+    });
+ //   });
