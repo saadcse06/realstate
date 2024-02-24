@@ -24,15 +24,20 @@
                                 </thead>
                                 <tbody>
                                 @foreach($data as $key=>$row)
-                                <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{$row->type_icon}}</td>
-                                    <td>{{$row->type_name}}</td>
-                                    <td>
-                                        <a href="{{ route('type.edit',$row->id) }}" class="btn btn-inverse-warning">Edit</a>
-                                        <a href="{{ route('type.destroy',$row->id )}}" class="btn btn-inverse-danger" id="delete">Delete</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$row->type_icon}}</td>
+                                        <td>{{$row->type_name}}</td>
+                                        <td>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('type.edit'))
+                                            <a href="{{ route('type.edit',$row->id) }}" class="btn btn-inverse-warning">Edit</a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('type.delete'))
+                                            <a href="{{ route('type.destroy',$row->id )}}"
+                                               class="btn btn-inverse-danger" id="delete">Delete</a>
+                                            @endif
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

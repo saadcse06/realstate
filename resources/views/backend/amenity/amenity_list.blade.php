@@ -23,14 +23,20 @@
                                 </thead>
                                 <tbody>
                                 @foreach($data as $key=>$row)
-                                <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{$row->amenitis_name}}</td>
-                                    <td>
-                                        <a href="{{ route('amenity.edit',$row->id) }}" class="btn btn-inverse-warning">Edit</a>
-                                        <a href="{{ route('amenity.destroy',$row->id )}}" class="btn btn-inverse-danger" id="delete">Delete</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$row->amenitis_name}}</td>
+                                        <td>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.edit'))
+                                                <a href="{{ route('amenity.edit',$row->id) }}"
+                                                   class="btn btn-inverse-warning">Edit</a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.delete'))
+                                                <a href="{{ route('amenity.destroy',$row->id )}}"
+                                                   class="btn btn-inverse-danger" id="delete">Delete</a>
+                                            @endif
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

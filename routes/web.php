@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //realstate admin group middleware
-Route::middleware(['auth','role:admin'])->group(function (){
+Route::middleware(['auth','roles:admin'])->group(function (){
     Route::get('/admin/dashboard', [AdminController::class, 'admin_dashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'admin_logout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'admin_profile'])->name('admin.profile');
@@ -49,39 +49,39 @@ Route::middleware(['auth','role:admin'])->group(function (){
 Route::get('/admin/login', [AdminController::class, 'admin_login'])->name('admin.login');
 
 // agent group middleware
-Route::middleware(['auth','role:agent'])->group(function (){
+Route::middleware(['auth','roles:agent'])->group(function (){
     Route::get('/agent/dashboard', [AgentController::class, 'agent_dashboard'])->name('agent.dashboard');
 });
 //end agent group middleware
 
 //PropertyTypeController group controller
-Route::middleware(['auth','role:admin'])->group(function (){
+Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(PropertyTypeController::class)->group(function (){
-      Route::get('/type/index','type_list')->name('type.list');
-      Route::get('/type/add','add_type')->name('type.add');
-      Route::get('/type/edit/{id}','edit_type')->name('type.edit');
-      Route::post('/type/store','store_type')->name('type.store');
-      Route::post('/type/update','update_type')->name('type.update');
-      Route::get('/type/destroy/{id}','destroy_type')->name('type.destroy');
+      Route::get('/type/index','type_list')->name('type.list')->middleware('permission:type.list');
+      Route::get('/type/add','add_type')->name('type.add')->middleware('permission:type.add');
+      Route::get('/type/edit/{id}','edit_type')->name('type.edit')->middleware('permission:type.edit');
+      Route::post('/type/store','store_type')->name('type.store')->middleware('permission:type.store');
+      Route::post('/type/update','update_type')->name('type.update')->middleware('permission:type.update');
+      Route::get('/type/destroy/{id}','destroy_type')->name('type.destroy')->middleware('permission:type.destroy');
     });
 });
 //end realstate group controller
 
 //Amenity group controller
-Route::middleware(['auth','role:admin'])->group(function (){
+Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(AmenityController::class)->group(function (){
-        Route::get('/amentiy/list','amentiy_list')->name('amenity.list');
-        Route::get('/amentiy/add','add_amentiy')->name('amenity.add');
-        Route::get('/amentiy/edit/{id}','edit_amenity')->name('amenity.edit');
-        Route::post('/amentiy/store','store_amenity')->name('amenity.store');
-        Route::post('/amentiy/update','update_amentiy')->name('amenity.update');
-        Route::get('/amentiy/destroy/{id}','destroy_amentiy')->name('amenity.destroy');
+        Route::get('/amentiy/list','amentiy_list')->name('amenity.list')->middleware('permission:amenity.list');
+        Route::get('/amentiy/add','add_amentiy')->name('amenity.add')->middleware('permission:amenity.add');
+        Route::get('/amentiy/edit/{id}','edit_amenity')->name('amenity.edit')->middleware('permission:amenity.edit');
+        Route::post('/amentiy/store','store_amenity')->name('amenity.store')->middleware('permission:amenity.store');
+        Route::post('/amentiy/update','update_amentiy')->name('amenity.update')->middleware('permission:amenity.update');
+        Route::get('/amentiy/destroy/{id}','destroy_amentiy')->name('amenity.destroy')->middleware('permission:amenity.destroy');
     });
 });
 //end realstate group controller
 
 //Group Route
-Route::middleware(['auth','role:admin'])->group(function (){
+Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(GroupController::class)->group(function (){
         Route::get('/group/list','group_list')->name('group.list');
         Route::get('/group/add','group_add')->name('group.add');
@@ -93,7 +93,7 @@ Route::middleware(['auth','role:admin'])->group(function (){
 });
 
 //Permission Route
-Route::middleware(['auth','role:admin'])->group(function (){
+Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(RoleController::class)->group(function (){
         Route::get('/permission/list','permission_list')->name('permission.list');
         Route::get('/permission/add','permission_add')->name('permission.add');
@@ -107,8 +107,8 @@ Route::middleware(['auth','role:admin'])->group(function (){
     });
 });
 
-//Role Route
-Route::middleware(['auth','role:admin'])->group(function (){
+//roles Route
+Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(RoleController::class)->group(function (){
         Route::get('/role/list','role_list')->name('role.list');
         Route::get('/role/add','role_add')->name('role.add');

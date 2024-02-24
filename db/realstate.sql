@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 03:36 AM
+-- Generation Time: Feb 24, 2024 at 06:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,6 +33,16 @@ CREATE TABLE `amenities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `amenities`
+--
+
+INSERT INTO `amenities` (`id`, `amenitis_name`, `created_at`, `updated_at`) VALUES
+(3, 'Air Condition', '2024-02-22 11:03:44', '2024-02-22 11:03:44'),
+(4, 'Car', '2024-02-22 11:04:36', '2024-02-22 11:04:36'),
+(5, 'Kitchen Hood', '2024-02-22 11:04:48', '2024-02-22 11:04:48'),
+(6, 'Air Cooler', '2024-02-22 11:04:56', '2024-02-22 11:04:56');
 
 -- --------------------------------------------------------
 
@@ -124,6 +134,15 @@ CREATE TABLE `model_has_roles` (
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1),
+(2, 'App\\Models\\User', 14),
+(4, 'App\\Models\\User', 12);
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +180,15 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at
 (3, 'type.edit', 'web', 'Property Type', '2024-02-21 00:36:49', '2024-02-21 00:36:49'),
 (4, 'type.store', 'web', 'Property Type', '2024-02-21 00:37:04', '2024-02-21 00:37:04'),
 (5, 'type.update', 'web', 'Property Type', '2024-02-21 00:37:55', '2024-02-21 00:37:55'),
-(6, 'type.destroy', 'web', 'Property Type', '2024-02-21 00:38:05', '2024-02-21 00:38:05');
+(6, 'type.destroy', 'web', 'Property Type', '2024-02-21 00:38:05', '2024-02-21 00:38:05'),
+(15, 'amenity.list', 'web', 'Amenities', '2024-02-22 09:05:15', '2024-02-22 09:05:15'),
+(16, 'amenity.add', 'web', 'Amenities', '2024-02-22 09:05:15', '2024-02-22 09:05:15'),
+(17, 'amenity.edit', 'web', 'Amenities', '2024-02-22 09:05:15', '2024-02-22 09:05:15'),
+(18, 'amenity.store', 'web', 'Amenities', '2024-02-22 09:05:15', '2024-02-22 09:05:15'),
+(19, 'amenity.update', 'web', 'Amenities', '2024-02-22 09:05:15', '2024-02-22 09:05:15'),
+(20, 'amenity.destroy', 'web', 'Amenities', '2024-02-22 09:05:15', '2024-02-22 09:05:15'),
+(21, 'type.menu', 'web', 'Property Type', '2024-02-24 10:43:13', '2024-02-24 10:43:13'),
+(22, 'amenity.menu', 'web', 'Amenities', '2024-02-24 10:43:40', '2024-02-24 10:43:40');
 
 -- --------------------------------------------------------
 
@@ -220,6 +247,16 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Superadmin', 'web', '2024-02-22 10:57:07', '2024-02-22 10:57:20'),
+(2, 'Manager', 'web', '2024-02-22 10:57:27', '2024-02-22 10:57:27'),
+(3, 'Admin', 'web', '2024-02-22 10:57:42', '2024-02-22 10:57:42'),
+(4, 'Sales', 'web', '2024-02-22 10:57:53', '2024-02-22 10:57:53');
+
 -- --------------------------------------------------------
 
 --
@@ -230,6 +267,52 @@ CREATE TABLE `role_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
   `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 1),
+(2, 2),
+(2, 3),
+(3, 1),
+(3, 2),
+(3, 3),
+(4, 1),
+(4, 2),
+(4, 3),
+(5, 1),
+(5, 2),
+(5, 3),
+(6, 1),
+(6, 3),
+(15, 1),
+(15, 2),
+(15, 3),
+(15, 4),
+(16, 1),
+(16, 2),
+(16, 3),
+(17, 1),
+(17, 2),
+(17, 3),
+(18, 1),
+(18, 2),
+(18, 3),
+(19, 1),
+(19, 2),
+(19, 3),
+(20, 1),
+(20, 3),
+(21, 1),
+(21, 4),
+(22, 1),
+(22, 4);
 
 -- --------------------------------------------------------
 
@@ -245,7 +328,7 @@ CREATE TABLE `users` (
   `photo` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `address` text DEFAULT NULL,
-  `role` enum('adminuser','student','user','agent') NOT NULL DEFAULT 'user',
+  `role` enum('admin','student','user','agent') NOT NULL DEFAULT 'user',
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -259,14 +342,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `address`, `role`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'adminuser', 'adminuser@gmail.com', '/upload/admin_img/1791474201011629.jpg', '01723207577', 'SB', 'adminuser', 'active', NULL, '$2y$12$Y7DZk09fIA2DM/riotb2c.RK6s1sD8TNEQTwrgN2MqULma/V1ON/K', NULL, NULL, '2024-02-20 20:35:34'),
+(1, 'Admin', 'admin', 'admin@gmail.com', '/upload/admin_img/1791474201011629.jpg', '01723207577', 'SB', 'admin', 'active', NULL, '$2y$12$Y7DZk09fIA2DM/riotb2c.RK6s1sD8TNEQTwrgN2MqULma/V1ON/K', NULL, NULL, '2024-02-20 20:35:34'),
 (2, 'Delilah Daniel', 'alessandra.gusikowski', 'trent41@example.net', 'https://via.placeholder.com/60x60.png/002288?text=nesciunt', '+1-774-701-2799', '99696 Anna Plains\nAlanisfurt, NY 04214-2873', 'user', 'inactive', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', 'EI1LkGbw8y', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
-(3, 'Mrs. Rae Jenkins II', 'tgraham', 'mozell.leuschke@example.net', 'https://via.placeholder.com/60x60.png/00cc88?text=esse', '+15614559822', '81281 Emerson Square\nDachshire, HI 31716', 'adminuser', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', '3KGdL0kKCw', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (4, 'Elmore Waelchi', 'bkassulke', 'jacobi.helen@example.com', 'https://via.placeholder.com/60x60.png/00cc22?text=optio', '774.810.8701', '390 Meghan Prairie Apt. 971\nNew Medabury, MD 75073-5900', 'agent', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', 'be9lyt2asG', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (5, 'Malcolm Ebert', 'schuster.maegan', 'delfina73@example.com', 'https://via.placeholder.com/60x60.png/00bb44?text=natus', '+1-773-814-5081', '955 Tremaine Mountains Suite 338\nTurnerbury, SC 09091-5536', 'student', 'active', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', '5Vvfwl8lOy', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (6, 'Dedric Jacobs', 'heber49', 'mayer.vance@example.com', 'https://via.placeholder.com/60x60.png/00ccff?text=harum', '+16829782172', '815 Isobel Ways\nOletastad, HI 13802-3804', 'user', 'inactive', '2024-02-15 07:13:51', '$2y$12$mdubyhJEv1uHORqe160KyOwh0M9w62GchMBTQwaYqGmJKDt/0xVcm', 'hzbsoPgGEr', '2024-02-15 07:13:51', '2024-02-15 07:13:51'),
 (7, 'User', NULL, 'user@gmail.com', NULL, NULL, NULL, 'user', 'active', NULL, '$2y$12$1UabmXGcASbLdAXQroJ5tuvJpGVUL7v/1Ai.rqx84/oH5Bg.nY1vK', NULL, '2024-02-15 07:14:36', '2024-02-15 07:14:36'),
-(8, 'Agent', NULL, 'agent@gmail.com', NULL, NULL, NULL, 'agent', 'active', NULL, '$2y$12$U74yosumf1.bbPK1/GWfWORXKvwBSw3CZbOrJDRpIfKP3SqKtL7/S', NULL, '2024-02-15 07:15:29', '2024-02-15 07:15:29');
+(8, 'Agent', NULL, 'agent@gmail.com', NULL, NULL, NULL, 'agent', 'active', NULL, '$2y$12$U74yosumf1.bbPK1/GWfWORXKvwBSw3CZbOrJDRpIfKP3SqKtL7/S', NULL, '2024-02-15 07:15:29', '2024-02-15 07:15:29'),
+(12, 'Saad', 'Saad', 'saad@gmail.com', '/upload/admin_img/1791799938419665.jpg', '018708393402', 'Dhaka', 'admin', 'active', NULL, '$2y$12$5DNwiva8zBzA522aU17qYeNOFgqCvWHGXEqSphWCOfl6uZPbRQj8C', NULL, '2024-02-24 04:35:18', '2024-02-24 10:53:01'),
+(14, 'Manager', 'manager', 'siam@gmail.com', NULL, '01589634581', 'Dhaka', 'admin', 'active', NULL, '$2y$12$CnOn3TAzhvXuNqSfhjnDV.qmg1hcwmTOpoQAHcKSH6wHXldl6Fc3.', NULL, '2024-02-24 10:28:50', '2024-02-24 10:28:50');
 
 --
 -- Indexes for dumped tables
@@ -368,7 +452,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `amenities`
 --
 ALTER TABLE `amenities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -392,7 +476,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -410,13 +494,13 @@ ALTER TABLE `property_types`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

@@ -11,13 +11,14 @@
     </div>
     <div class="sidebar-body">
         <ul class="nav">
-            <li class="nav-item nav-category">Main</li>
+            <li class="nav-item nav-category">RealEstate</li>
             <li class="nav-item">
                 <a href="{{route('admin.dashboard')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
+            @if(\Illuminate\Support\Facades\Auth::user()->can('type.menu'))
             <li class="nav-item nav-category">Property</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false" aria-controls="property">
@@ -27,15 +28,21 @@
                 </a>
                 <div class="collapse" id="property">
                     <ul class="nav sub-menu" >
+                        @if(\Illuminate\Support\Facades\Auth::user()->can('type.list'))
                         <li class="nav-item">
                             <a href="{{ route('type.list') }}" class="nav-link">All Property Type</a>
                         </li>
+                        @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->can('type.add'))
                         <li class="nav-item">
                             <a href="{{ route('type.add' )}}" class="nav-link">Add Property Type</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.menu'))
             <li class="nav-item nav-category">Amenity</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#amenity" role="button" aria-expanded="false" aria-controls="amenity">
@@ -45,15 +52,20 @@
                 </a>
                 <div class="collapse" id="amenity">
                     <ul class="nav sub-menu">
+                        @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.list'))
                         <li class="nav-item">
                             <a href="{{ route('amenity.list' )}}" class="nav-link" >All Amenity</a>
                         </li>
+                        @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.add'))
                         <li class="nav-item">
                             <a href="{{ route('amenity.add' )}}" class="nav-link" >Add Amenity</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
+            @endif
 
             <li class="nav-item nav-category">Roles & Permission</li>
             <li class="nav-item">

@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary me-2">Save</button>
+                                <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>
 
                         </div>
