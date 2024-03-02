@@ -57,8 +57,8 @@ Route::middleware(['auth','roles:agent'])->group(function (){
 //PropertyTypeController group controller
 Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(PropertyTypeController::class)->group(function (){
-      Route::get('/type/index','type_list')->name('type.list')->middleware('permission:type.list');
-      Route::get('/type/add','add_type')->name('type.add')->middleware('permission:type.add');
+      Route::get('/type/type_list','type_list')->name('type.type_list')->middleware('permission:type.type_list');
+      Route::get('/type/type_add','add_type')->name('type.type_add')->middleware('permission:type.type_add');
       Route::get('/type/edit/{id}','edit_type')->name('type.edit')->middleware('permission:type.edit');
       Route::post('/type/store','store_type')->name('type.store')->middleware('permission:type.store');
       Route::post('/type/update','update_type')->name('type.update')->middleware('permission:type.update');
@@ -70,8 +70,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
 //Amenity group controller
 Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(AmenityController::class)->group(function (){
-        Route::get('/amentiy/list','amentiy_list')->name('amenity.list')->middleware('permission:amenity.list');
-        Route::get('/amentiy/add','add_amentiy')->name('amenity.add')->middleware('permission:amenity.add');
+        Route::get('/amentiy/amentiy_list','amentiy_list')->name('amenity.amenity_list')->middleware('permission:amenity.amenity_list');
+        Route::get('/amentiy/create','add_amentiy')->name('amenity.create')->middleware('permission:amenity.create');
         Route::get('/amentiy/edit/{id}','edit_amenity')->name('amenity.edit')->middleware('permission:amenity.edit');
         Route::post('/amentiy/store','store_amenity')->name('amenity.store')->middleware('permission:amenity.store');
         Route::post('/amentiy/update','update_amentiy')->name('amenity.update')->middleware('permission:amenity.update');
@@ -83,8 +83,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
 //Group Route
 Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(GroupController::class)->group(function (){
-        Route::get('/group/list','group_list')->name('group.list');
-        Route::get('/group/add','group_add')->name('group.add');
+        Route::get('/group/group_list','group_list')->name('group.group_list');
+        Route::get('/group/group_add','group_add')->name('group.group_add');
         Route::post('/group/store','store')->name('group.store');
         Route::get('/group/edit/{id}','group_edit')->name('group.edit');
         Route::post('/group/update/','group_update')->name('group.update');
@@ -95,13 +95,13 @@ Route::middleware(['auth','roles:admin'])->group(function (){
 //Permission Route
 Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(RoleController::class)->group(function (){
-        Route::get('/permission/list','permission_list')->name('permission.list');
-        Route::get('/permission/add','permission_add')->name('permission.add');
+        Route::get('/permission/permission_list','permission_list')->name('permission.permission_list');
+        Route::get('/permission/permission_add','permission_add')->name('permission.permission_add');
         Route::post('/permission/store','permission_store')->name('permission.store');
         Route::get('/permission/edit/{id}','permission_edit')->name('permission.edit');
         Route::post('/permission/update','permission_update')->name('permission.update');
         Route::get('/permission/destroy/{id}','destroy_permission')->name('permission.destroy');
-        Route::get('/permission/import','permission_import')->name('permission.import');
+        Route::get('/permission/permission_import','permission_import')->name('permission.import');
         Route::post('/permission/store_import_data','store_import_data')->name('permission.store_import_data');
         Route::get('/permission/export','permission_export')->name('permission.export');
     });
@@ -110,8 +110,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
 //roles Route
 Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(RoleController::class)->group(function (){
-        Route::get('/role/list','role_list')->name('role.list');
-        Route::get('/role/add','role_add')->name('role.add');
+        Route::get('/role/role_list','role_list')->name('role.role_list');
+        Route::get('/role/role_add','role_add')->name('role.role_add');
         Route::post('/role/store','role_store')->name('role.store');
         Route::get('/role/edit/{id}','role_edit')->name('role.edit');
         Route::post('/role/update','role_update')->name('role.update');
@@ -128,11 +128,11 @@ Route::middleware(['auth','roles:admin'])->group(function (){
 //Admin User Route
 //Route::middleware(['auth','role:admin'])->group(function (){
     Route::controller(AdminController::class)->group(function (){
-        Route::get('/admin/list','admin_user_list')->name('admin.list');
-        Route::get('/admin/add','admin_user_add')->name('admin.add');
+        Route::get('/admin/admin_user_list','admin_user_list')->name('admin.admin_list');
+        Route::get('/admin/admin_user_add','admin_user_add')->name('admin.admin_add');
         Route::post('/admin/store','admin_user_store')->name('admin.store');
         Route::get('/admin/edit/{id}','admin_user_edit')->name('admin.edit');
         Route::get('/admin/delete/{id}','admin_user_destroy')->name('admin.destroy');
         Route::post('/admin/update','admin_user_update')->name('admin.update');
     });
- //   });
+//});

@@ -16,6 +16,7 @@ use Spatie\Permission\Models\Permission;
 class AdminController extends Controller
 {
     public function admin_dashboard(){
+        
         return view('admin.index');
     }
 
@@ -24,6 +25,7 @@ class AdminController extends Controller
         $profileData=User::find($id);
         return view('admin.admin_profile_view',compact('profileData'));
     }
+
     public function admin_profile_store(Request $request){
         $id = Auth::user()->id;
         $data=User::find($id);
@@ -45,7 +47,6 @@ class AdminController extends Controller
                 $imgUrl='/upload/admin_img/'.$imgName;
                 $data->photo=$imgUrl;
             }
-
         $data->save();
         $msg=array('message'=>'admin Profile Updated Sucessfully', 'alert-type'=>'success');
         return redirect()->back()->with($msg);

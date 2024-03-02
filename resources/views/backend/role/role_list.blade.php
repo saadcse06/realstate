@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('role.add')}}" class="btn btn-inverse-info">Add Role</a>&nbsp;&nbsp;&nbsp;
+                @if(\Illuminate\Support\Facades\Auth::user()->can('role.role_add'))
+                    <a href="{{route('role.role_add')}}" class="btn btn-inverse-info">Add Role</a>&nbsp;&nbsp;&nbsp;
+                @endif
             </ol>
         </nav>
         <div class="row">
@@ -26,10 +28,14 @@
                                         <td>{{$key+1}}</td>
                                         <td>{{$row->name }}</td>
                                         <td>
-                                            <a href="{{ route('role.edit',$row->id) }}"
-                                               class="btn btn-inverse-warning">Edit</a>
-                                            <a href="{{ route('role.destroy',$row->id )}}"
-                                               class="btn btn-inverse-danger" id="delete">Delete</a>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('role.edit'))
+                                                <a href="{{ route('role.edit',$row->id) }}"
+                                                   class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('role.destroy'))
+                                                <a href="{{ route('role.destroy',$row->id )}}"
+                                                   class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('role.add.permission')}}" class="btn btn-inverse-info">Add Role In Permission</a>&nbsp;&nbsp;&nbsp;
+                @if(\Illuminate\Support\Facades\Auth::user()->can('role.add.permission'))
+                    <a href="{{route('role.add.permission')}}" class="btn btn-inverse-info">Add Role In Permission</a>
+                @endif
             </ol>
         </nav>
         <div class="row">
@@ -32,10 +34,14 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('edit.role.permission',$row->id) }}"
-                                               class="btn btn-inverse-warning">Edit</a>
-                                            <a href="{{ route('destroy.role.permission',$row->id )}}"
-                                               class="btn btn-inverse-danger" id="delete">Delete</a>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('edit.role.permission'))
+                                                <a href="{{ route('edit.role.permission',$row->id) }}"
+                                                   class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('destroy.role.permission'))
+                                                <a href="{{ route('destroy.role.permission',$row->id )}}"
+                                                   class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

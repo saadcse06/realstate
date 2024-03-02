@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('amenity.add')}}" class="btn btn-inverse-info">Add Amenity</a>
+                @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.create'))
+                    <a href="{{route('amenity.create')}}" class="btn btn-inverse-info">Add Amenity</a>
+                @endif
             </ol>
         </nav>
 
@@ -29,11 +31,11 @@
                                         <td>
                                             @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.edit'))
                                                 <a href="{{ route('amenity.edit',$row->id) }}"
-                                                   class="btn btn-inverse-warning">Edit</a>
+                                                   class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
                                             @endif
-                                            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.delete'))
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.destroy'))
                                                 <a href="{{ route('amenity.destroy',$row->id )}}"
-                                                   class="btn btn-inverse-danger" id="delete">Delete</a>
+                                                   class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
                                             @endif
                                         </td>
                                     </tr>

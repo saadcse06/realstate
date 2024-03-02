@@ -19,131 +19,166 @@
                 </a>
             </li>
             @if(\Illuminate\Support\Facades\Auth::user()->can('type.menu'))
-            <li class="nav-item nav-category">Property</li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false" aria-controls="property">
-                    <i class="link-icon" data-feather="octagon"></i>
-                    <span class="link-title">Property Type</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="property">
-                    <ul class="nav sub-menu" >
-                        @if(\Illuminate\Support\Facades\Auth::user()->can('type.list'))
-                        <li class="nav-item">
-                            <a href="{{ route('type.list') }}" class="nav-link">All Property Type</a>
-                        </li>
-                        @endif
-                        @if(\Illuminate\Support\Facades\Auth::user()->can('type.add'))
-                        <li class="nav-item">
-                            <a href="{{ route('type.add' )}}" class="nav-link">Add Property Type</a>
-                        </li>
-                        @endif
-                    </ul>
-                </div>
-            </li>
+                <li class="nav-item nav-category">RealEState</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                       aria-controls="emails">
+                        <i class="link-icon" data-feather="octagon"></i>
+                        <span class="link-title">Property Type</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                        <ul class="nav sub-menu">
+                            @if(\Illuminate\Support\Facades\Auth::user()->can('type.type_list'))
+                                <li class="nav-item">
+                                    <a href="{{ route('type.type_list') }}" class="nav-link">All Property Type</a>
+                                </li>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->can('type.type_add'))
+                                <li class="nav-item">
+                                    <a href="{{ route('type.type_add')}}" class="nav-link">Add Property Type</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
             @endif
             @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.menu'))
-            <li class="nav-item nav-category">Amenity</li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#amenity" role="button" aria-expanded="false" aria-controls="amenity">
-                    <i class="link-icon" data-feather="square"></i>
-                    <span class="link-title">Amenity</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="amenity">
-                    <ul class="nav sub-menu">
-                        @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.list'))
-                        <li class="nav-item">
-                            <a href="{{ route('amenity.list' )}}" class="nav-link" >All Amenity</a>
-                        </li>
-                        @endif
-                        @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.add'))
-                        <li class="nav-item">
-                            <a href="{{ route('amenity.add' )}}" class="nav-link" >Add Amenity</a>
-                        </li>
-                        @endif
-                    </ul>
-                </div>
-            </li>
+                <li class="nav-item nav-category">Amenities</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
+                       aria-controls="uiComponents">
+                        <i class="link-icon" data-feather="square"></i>
+                        <span class="link-title">Amenity</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="uiComponents">
+                        <ul class="nav sub-menu">
+                            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.amenity_list'))
+                                <li class="nav-item">
+                                    <a href="{{ route('amenity.amenity_list') }}" class="nav-link">All Amenity</a>
+                                </li>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->can('amenity.create'))
+                                <li class="nav-item">
+                                    <a href="{{ route('amenity.create') }}" class="nav-link">Amenity Add</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
             @endif
-
-            <li class="nav-item nav-category">Roles & Permission</li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
-                    <i class="link-icon" data-feather="anchor"></i>
-                    <span class="link-title">Group</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="advancedUI">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('group.list') }}" class="nav-link">Group List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('group.add') }}" class="nav-link">Add Group</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#permissions" role="button" aria-expanded="false" aria-controls="permissions">
-                    <i class="link-icon" data-feather="feather"></i>
-                    <span class="link-title">Permission</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="permissions">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('permission.list') }}" class="nav-link">All Permission</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('permission.add') }}" class="nav-link">Add Permission</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#roles" role="button" aria-expanded="false" aria-controls="roles">
-                    <i class="link-icon" data-feather="activity"></i>
-                    <span class="link-title">Role</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="roles">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('role.list') }}" class="nav-link">All Role</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('role.add') }}" class="nav-link">Add Role</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('all.role.permission') }}" class="nav-link">All Roles In Permission</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('role.add.permission') }}" class="nav-link">Add Roles In Permission</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#admins" role="button" aria-expanded="false" aria-controls="admins">
-                    <i class="link-icon" data-feather="activity"></i>
-                    <span class="link-title">Manage Admin User</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="admins">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.list') }}" class="nav-link">All Admin User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.add') }}" class="nav-link">Add Admin User</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            @if(\Illuminate\Support\Facades\Auth::user()->can('role.menu'))
+                <li class="nav-item nav-category">Roles & Permission</li>
+                @if(\Illuminate\Support\Facades\Auth::user()->can('group.menu'))
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" role="button" aria-expanded="false"
+                           aria-controls="general-pages">
+                            <i class="link-icon" data-feather="anchor"></i>
+                            <span class="link-title">Group</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="general-pages">
+                            <ul class="nav sub-menu">
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('group.group_list'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('group.group_list') }}" class="nav-link">Group List</a>
+                                    </li>
+                                @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('group.group_add'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('group.group_add') }}" class="nav-link">Add Group</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.menu'))
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#authPages" role="button" aria-expanded="false"
+                           aria-controls="authPages">
+                            <i class="link-icon" data-feather="feather"></i>
+                            <span class="link-title">Permission</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="authPages">
+                            <ul class="nav sub-menu">
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.permission_list'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('permission.permission_list') }}" class="nav-link">All Permission</a>
+                                    </li>
+                                @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.permission_add'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('permission.permission_add') }}" class="nav-link">Add Permission</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->can('role.menu'))
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#errorPages" role="button" aria-expanded="false"
+                           aria-controls="errorPages">
+                            <i class="link-icon" data-feather="activity"></i>
+                            <span class="link-title">Role</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="errorPages">
+                            <ul class="nav sub-menu">
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('role.role_list'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('role.role_list') }}" class="nav-link">All Role</a>
+                                    </li>
+                                @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('role.role_add'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('role.role_add') }}" class="nav-link">Add Role</a>
+                                    </li>
+                                @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('all.role.permission'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('all.role.permission') }}" class="nav-link">All Roles In
+                                            Permission</a>
+                                    </li>
+                                @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->can('role.add.permission'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('role.add.permission') }}" class="nav-link">Add Roles In
+                                            Permission</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->can('admin.menu'))
+                <li class="nav-item nav-category">Admin User</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#admins" role="button" aria-expanded="false" aria-controls="admins">
+                        <i class="link-icon" data-feather="activity"></i>
+                        <span class="link-title">Manage Admin User</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="admins">
+                        <ul class="nav sub-menu">
+                            @if(\Illuminate\Support\Facades\Auth::user()->can('admin.admin_list'))
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.admin_list') }}" class="nav-link">All Admin User</a>
+                                </li>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->can('admin.admin_add'))
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.admin_add') }}" class="nav-link">Add Admin User</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+                @endif
         </ul>
     </div>
 </nav>

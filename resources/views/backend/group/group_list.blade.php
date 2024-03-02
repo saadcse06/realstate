@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('group.add')}}" class="btn btn-inverse-info">Add Group</a>
+                @if(\Illuminate\Support\Facades\Auth::user()->can('group.group_add'))
+                    <a href="{{route('group.group_add')}}" class="btn btn-inverse-info">Add Group</a>
+                @endif
             </ol>
         </nav>
 
@@ -27,8 +29,12 @@
                                         <td>{{$key+1}}</td>
                                         <td>{{ $row->group_name }}</td>
                                         <td>
-                                            <a href="{{ route('group.edit',$row->id) }}" class="btn btn-inverse-warning">Edit</a>
-                                            <a href="{{ route('group.destroy',$row->id )}}" class="btn btn-inverse-danger" id="delete">Delete</a>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('group.edit'))
+                                                <a href="{{ route('group.edit',$row->id) }}" class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('group.destroy'))
+                                            <a href="{{ route('group.destroy',$row->id )}}" class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

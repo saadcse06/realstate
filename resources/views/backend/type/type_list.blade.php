@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('type.add')}}" class="btn btn-inverse-info">Add Property Type</a>
+                @if(\Illuminate\Support\Facades\Auth::user()->can('type.type_add'))
+                    <a href="{{route('type.type_add')}}" class="btn btn-inverse-info">Add Property Type</a>
+                @endif
             </ol>
         </nav>
 
@@ -30,11 +32,11 @@
                                         <td>{{$row->type_name}}</td>
                                         <td>
                                             @if(\Illuminate\Support\Facades\Auth::user()->can('type.edit'))
-                                            <a href="{{ route('type.edit',$row->id) }}" class="btn btn-inverse-warning">Edit</a>
+                                            <a href="{{ route('type.edit',$row->id) }}" class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
                                             @endif
-                                            @if(\Illuminate\Support\Facades\Auth::user()->can('type.delete'))
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('type.destroy'))
                                             <a href="{{ route('type.destroy',$row->id )}}"
-                                               class="btn btn-inverse-danger" id="delete">Delete</a>
+                                               class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
                                             @endif
                                         </td>
                                     </tr>

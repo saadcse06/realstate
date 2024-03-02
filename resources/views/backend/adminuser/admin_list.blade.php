@@ -3,7 +3,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('admin.add')}}" class="btn btn-inverse-info">Add Admin User</a>&nbsp;&nbsp;&nbsp;
+                @if(\Illuminate\Support\Facades\Auth::user()->can('admin.admin_add'))
+                    <a href="{{route('admin.admin_add')}}" class="btn btn-inverse-info">Add Admin User</a>&nbsp;&nbsp;
+                @endif
             </ol>
         </nav>
         <div class="row">
@@ -26,6 +28,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($allAdmin as $key=>$row)
+                                    {{--@php dd($row->roles); @endphp--}}
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>
@@ -41,10 +44,14 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.edit',$row->id) }}"
-                                               class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
-                                            <a href="{{ route('admin.destroy',$row->id )}}"
-                                               class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('admin.edit'))
+                                                <a href="{{ route('admin.edit',$row->id) }}"
+                                                   class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('admin.destroy'))
+                                                <a href="{{ route('admin.destroy',$row->id )}}"
+                                                   class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

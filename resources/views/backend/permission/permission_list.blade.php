@@ -3,9 +3,15 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{route('permission.add')}}" class="btn btn-inverse-info">Add Permission</a>&nbsp;&nbsp;&nbsp;
-                <a href="{{route('permission.import')}}" class="btn btn-inverse-warning">Import</a>&nbsp;&nbsp;&nbsp;
+                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.permission_add'))
+                <a href="{{route('permission.permission_add')}}" class="btn btn-inverse-info">Add Permission</a>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.import'))    &nbsp;
+                <a href="{{route('permission.import')}}" class="btn btn-inverse-warning">Import</a>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.export'))
                 <a href="{{route('permission.export')}}" class="btn btn-inverse-danger">Export</a>
+                @endif
             </ol>
         </nav>
         <div class="row">
@@ -30,10 +36,14 @@
                                         <td>{{$row->name }}</td>
                                         <td>{{$row->group_name  }}</td>
                                         <td>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('permission.edit'))
                                             <a href="{{ route('permission.edit',$row->id) }}"
-                                               class="btn btn-inverse-warning">Edit</a>
+                                               class="btn btn-inverse-warning"><i data-feather="edit"></i></a>
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->can('permission.destroy'))
                                             <a href="{{ route('permission.destroy',$row->id )}}"
-                                               class="btn btn-inverse-danger" id="delete">Delete</a>
+                                               class="btn btn-inverse-danger" id="delete"><i data-feather="trash-2"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
