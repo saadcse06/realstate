@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Group;
+use Illuminate\Support\Facades\Cache;
 class GroupController extends Controller
 {
     public function group_list(){
-        $group=Group::get();
+        $group = Cache::remember('group', 15, function (){
+            return Group::get();
+        });
+        //$group=Group::get();
         return view('backend.group.group_list',compact('group'));
     }
 

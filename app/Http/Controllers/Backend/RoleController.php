@@ -6,6 +6,7 @@ use App\Exports\PermissionExport;
 use App\Imports\PermissionImport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 Use Spatie\Permission\Models\Permission;
 Use Spatie\Permission\Models\Role;
 use App\Models\User;
@@ -17,7 +18,10 @@ use Maatwebsite\Excel\Facades\Excel;
 class RoleController extends Controller
 {
     public function permission_list(){
-      $permision= Permission::all();
+        $permision = Cache::remember('permission', 15, function (){
+           return Permission::all();
+        });
+      //$permision= Permission::all();
       return view('backend.permission.permission_list',compact('permision'));
     }
 
@@ -83,7 +87,10 @@ class RoleController extends Controller
     //role Crud Start Here
 
     public function role_list(){
-        $role= Role::all();
+        $role = Cache::remember('role', 15, function (){
+            return Role::all();
+        });
+        //$role= Role::all();
         return view('backend.role.role_list',compact('role'));
     }
 

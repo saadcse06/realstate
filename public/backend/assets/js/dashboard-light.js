@@ -201,6 +201,8 @@ $(function() {
 
   // New Customers Chart
   if($('#customersChart').length) {
+    var user = $("#user").val();
+    //console.log(user);
     var options1 = {
       chart: {
         type: "line",
@@ -211,7 +213,7 @@ $(function() {
       },
       series: [{
         name: '',
-        data: [3844, 3855, 3841, 3867, 3822, 3843, 3821, 3841, 3856, 3827, 3843]
+        data: [user]
       }],
       xaxis: {
         type: 'datetime',

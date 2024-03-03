@@ -201,6 +201,7 @@ $(function() {
 
   // New Customers Chart
   if($('#customersChart').length) {
+    var user = $("#user").val();
     var options1 = {
       chart: {
         type: "line",
@@ -211,7 +212,7 @@ $(function() {
       },
       series: [{
         name: '',
-        data: [3844, 3855, 3841, 3867, 3822, 3843, 3821, 3841, 3856, 3827, 3843]
+        data: [user]
       }],
       xaxis: {
         type: 'datetime',
@@ -485,10 +486,16 @@ $(function() {
 
 
 
+  // Monthly Report Chart
+  if($('#monthlyReportChart').length) {
+    var type = $("#propertyType").val();
+    var allType = jQuery.parseJSON(type);
+    var count = allType.length;
+    for(i=0; i<=count; i++){
 
-
-  // Monthly Sales Chart
-  if($('#monthlySalesChart').length) {
+    }
+    var counter = 0;
+    console.log(count);
     var options = {
       chart: {
         type: 'bar',

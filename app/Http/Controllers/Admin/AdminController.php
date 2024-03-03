@@ -3,21 +3,60 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Amenities;
+use App\Models\PropertyType;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Matcher\Type;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
     public function admin_dashboard(){
-        
-        return view('admin.index');
+
+        $user = Cache::remember('user', 15, function (){
+            return User::get()->count();
+        });
+        $type = Cache::remember('type', 15, function (){
+            return PropertyType::get()->count();
+        });
+
+        $aminity = Cache::remember('type', 15, function (){
+            return Amenities::get()->count();
+        });
+        //$allType = PropertyType::get();
+        $allTypes = PropertyType::select('created_at', DB::raw('count(*) as type'))
+            ->groupBy('created_at')
+            ->get();
+        $allType=array();
+        foreach ($allTypes as $k=>$dt){
+            $allType['created_date'][$k]= $dt->created_at->format('d.m.Y');
+            $allType['type'][$k]= $dt->type;
+        }
+        return response()->json($allType);
+        $count=array();
+        $date=array();
+        foreach ($allType as $key=>$row){
+
+            $a = $row->created_at;
+            $b = next($allType)['created_at'] ?? false;
+            return response()->json($b);
+            $count[] = $row->type;
+            $createdDate = $row->created_at->format('d.m.Y');
+            $date[] = $createdDate;
+        }
+        return response()->json($date);
+        return view('admin.index', compact('user','type', 'aminity', 'allType'));
     }
 
     public function admin_profile(){

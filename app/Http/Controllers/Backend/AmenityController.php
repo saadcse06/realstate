@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
-
+use Illuminate\Support\Facades\Cache;
 
 class AmenityController extends Controller
 {
     public function amentiy_list(){
-        $data=Amenities::get();
+        $data = Cache::remember('amenity-data', 15, function (){
+            return Amenities::get();
+        });
+        //$data=Amenities::get();
         return view('backend.amenity.amenity_list',compact('data'));
     }
     public function add_amentiy(){

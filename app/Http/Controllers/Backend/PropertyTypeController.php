@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PropertyType;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PropertyTypeController extends Controller
 {
     public function type_list(){
-      $data=PropertyType::latest()->get();
+        $data = Cache::remember('pr-data', 15, function (){
+            return PropertyType::latest()->get();
+        });
+      //$data=PropertyType::latest()->get();
       return view('backend.type.type_list',compact('data'));
     }
     public function add_type(){
