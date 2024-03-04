@@ -30,7 +30,7 @@ class PropertyTypeController extends Controller
         $PropertyType->type_icon = $request->type_icon;
         $PropertyType->save();
         $msg=array('message'=>'Property Type Created Successfully', 'alert-type'=>'success');
-        return redirect()->route('type.list')->with($msg);
+        return redirect()->route('type.type_list')->with($msg);
     }
 
     public function edit_type($id){
@@ -48,7 +48,7 @@ class PropertyTypeController extends Controller
         $propertyType->type_icon=$request->type_icon;
         $propertyType->save();
         $msg=array('message'=>'Property Type Updated Successfully', 'alert-type'=>'success');
-        return redirect()->route('type.list')->with($msg);
+        return redirect()->route('type.type_list')->with($msg);
     }
     public function destroy_type($id){
 

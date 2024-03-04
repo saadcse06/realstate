@@ -98,7 +98,7 @@
                             <h6 class="card-title mb-0">Monthly Report</h6>
                         </div>
                         <p class="text-muted">Monthly Created Profile.</p>
-                        <input type="hidden" value="{{ $allType }}" id="propertyType">
+                        <input type="hidden" value="{{ $finalData }}" id="propertyType">
                         <div id="monthlyReportChart"></div>
                     </div>
                 </div>

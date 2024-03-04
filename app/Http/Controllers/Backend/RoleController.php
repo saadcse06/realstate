@@ -40,7 +40,7 @@ class RoleController extends Controller
         $permission->name = $request->name;
         $permission->save();
         $msg=array('message'=>'Permission Created Successfully', 'alert-type'=>'success');
-        return redirect()->route('permission.list')->with($msg);
+        return redirect()->route('permission.permission_list')->with($msg);
     }
 
     public function permission_edit($id){
@@ -60,7 +60,7 @@ class RoleController extends Controller
         $permission->name = $request->name;
         $permission->save();
         $msg=array('message'=>'Permission Updated Successfully', 'alert-type'=>'success');
-        return redirect()->route('permission.list')->with($msg);
+        return redirect()->route('permission.permission_list')->with($msg);
     }
     public function destroy_permission($id){
         Permission::findOrFail($id)->delete();

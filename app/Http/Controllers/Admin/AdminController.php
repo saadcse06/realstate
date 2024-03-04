@@ -35,28 +35,29 @@ class AdminController extends Controller
             return Amenities::get()->count();
         });
         //$allType = PropertyType::get();
-        $allTypes = PropertyType::select('created_at', DB::raw('count(*) as type'))
+        $allTypes = PropertyType::select(
+            //'created_at', DB::raw('count(*) as type'),
+            DB::raw('count(*) as total'),
+            DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as created_date'),
+            DB::raw('DAYNAME(created_at) as day')
+        )
             ->groupBy('created_at')
             ->get();
-        $allType=array();
-        foreach ($allTypes as $k=>$dt){
-            $allType['created_date'][$k]= $dt->created_at->format('d.m.Y');
-            $allType['type'][$k]= $dt->type;
+        $data = array();
+        foreach ( $allTypes as $key => $row ) {
+             if($row->created_date == $allTypes[$key+1-1]->created_date){
+                 $data[$row->created_date][] = $row;
+             }else{
+                 $data[$key] = $row;
+             }
         }
-        return response()->json($allType);
-        $count=array();
-        $date=array();
-        foreach ($allType as $key=>$row){
+        $finalData=array();
+        foreach ($data as $key=>$val){
+            $finalData[$key]=count($val);
+        }
+        //return response()->json($finalData);
 
-            $a = $row->created_at;
-            $b = next($allType)['created_at'] ?? false;
-            return response()->json($b);
-            $count[] = $row->type;
-            $createdDate = $row->created_at->format('d.m.Y');
-            $date[] = $createdDate;
-        }
-        return response()->json($date);
-        return view('admin.index', compact('user','type', 'aminity', 'allType'));
+        return view('admin.index', compact('user','type', 'aminity', 'finalData'));
     }
 
     public function admin_profile(){
@@ -165,7 +166,7 @@ class AdminController extends Controller
             $user->assignRole($roles);
         }
         $msg=array('message'=>'New Admin User Create Successfully', 'alert-type'=>'success');
-        return redirect()->route('admin.list')->with($msg);
+        return redirect()->route('admin.admin_list')->with($msg);
     }
 
     public function admin_user_edit($id){
@@ -199,7 +200,7 @@ class AdminController extends Controller
         }
         //return response()->json($user);
         $msg=array('message'=>'Admin User Updated Successfully', 'alert-type'=>'success');
-        return redirect()->route('admin.list')->with($msg);
+        return redirect()->route('admin.admin_list')->with($msg);
 
     }
 

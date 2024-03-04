@@ -29,7 +29,7 @@ class GroupController extends Controller
         //dd($group);
         $group->save();
         $msg=array('message'=>'Group Name Created Successfully', 'alert-type'=>'success');
-        return redirect()->route('group.list')->with($msg);
+        return redirect()->route('group.group_list')->with($msg);
     }
 
     public function group_edit($id){
@@ -46,7 +46,7 @@ class GroupController extends Controller
         $group->group_name=$request->group_name;
         $group->save();
         $msg=array('message'=>'Group Updated Successfully', 'alert-type'=>'success');
-        return redirect()->route('group.list')->with($msg);
+        return redirect()->route('group.group_list')->with($msg);
     }
 
     public function destroy_group($id){

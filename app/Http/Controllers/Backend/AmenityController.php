@@ -27,7 +27,7 @@ class AmenityController extends Controller
         $amenities->amenitis_name = $request->amenitis_name;
         $amenities->save();
         $msg=array('message'=>'Amenity Name Created Successfully', 'alert-type'=>'success');
-        return redirect()->route('amenity.list')->with($msg);
+        return redirect()->route('amenity.amenity_list')->with($msg);
     }
 
     public function edit_amenity($id){
@@ -43,7 +43,7 @@ class AmenityController extends Controller
         $amenity->amenitis_name=$request->amenitis_name;
         $amenity->save();
         $msg=array('message'=>'Amenity Updated Successfully', 'alert-type'=>'success');
-        return redirect()->route('amenity.list')->with($msg);
+        return redirect()->route('amenity.amenity_list')->with($msg);
     }
     public function destroy_amentiy($id){
         Amenities::findOrFail($id)->delete();
