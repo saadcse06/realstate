@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2024 at 05:51 PM
+-- Generation Time: Mar 09, 2024 at 02:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,6 +43,30 @@ INSERT INTO `amenities` (`id`, `amenitis_name`, `created_at`, `updated_at`) VALU
 (4, 'Car', '2024-02-22 11:04:36', '2024-02-22 11:04:36'),
 (5, 'Kitchen Hood', '2024-02-22 11:04:48', '2024-02-22 11:04:48'),
 (6, 'Air Cooler', '2024-02-22 11:04:56', '2024-02-22 11:04:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache`
+--
+
+CREATE TABLE `cache` (
+  `key` varchar(255) NOT NULL,
+  `value` mediumtext NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) NOT NULL,
+  `owner` varchar(255) NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -109,7 +133,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2024_02_17_044143_create_property_types_table', 2),
 (6, '2024_02_18_085330_create_amenities_table', 3),
 (7, '2024_02_20_093053_create_permission_tables', 3),
-(8, '2024_02_21_050621_create_groups_table', 4);
+(8, '2024_02_21_050621_create_groups_table', 4),
+(9, '2024_03_03_054350_create_cache_table', 5);
 
 -- --------------------------------------------------------
 
@@ -227,7 +252,8 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at
 (57, 'admin.store', 'web', 'User', '2024-03-02 03:04:40', '2024-03-02 03:04:40'),
 (58, 'admin.edit', 'web', 'User', '2024-03-02 03:04:52', '2024-03-02 03:04:52'),
 (59, 'admin.destroy', 'web', 'User', '2024-03-02 03:05:03', '2024-03-02 03:05:03'),
-(60, 'admin.update', 'web', 'User', '2024-03-02 03:05:13', '2024-03-02 03:05:13');
+(60, 'admin.update', 'web', 'User', '2024-03-02 03:05:13', '2024-03-02 03:05:13'),
+(61, 'permission.permission_pdf_download', 'web', 'Permission', '2024-03-09 06:46:50', '2024-03-09 06:52:40');
 
 -- --------------------------------------------------------
 
@@ -269,8 +295,11 @@ CREATE TABLE `property_types` (
 INSERT INTO `property_types` (`id`, `type_name`, `type_icon`, `created_at`, `updated_at`) VALUES
 (1, 'Appartment', 'icon-1', '2024-02-17 02:12:12', '2024-02-17 02:12:12'),
 (2, 'Office', 'Icon-2', '2024-02-17 03:02:52', '2024-02-17 03:02:52'),
-(3, 'Floor', 'icon-3', '2024-02-17 03:03:19', '2024-02-17 03:03:19'),
-(4, 'Duplex', 'icon-4', '2024-02-17 03:03:46', '2024-02-17 03:03:46');
+(3, 'Floor', 'icon-3', '2024-02-18 03:03:19', '2024-02-17 03:03:19'),
+(4, 'Duplex', 'icon-4', '2024-02-18 03:03:46', '2024-02-17 03:03:46'),
+(5, 'Hostel', 'Icon-5', '2024-03-08 04:08:53', '2024-03-09 04:08:53'),
+(6, 'Ladies Hotel', 'Icon-6', '2024-03-09 04:10:38', '2024-03-09 04:10:38'),
+(7, 'Teachers Quarter', 'Icon-7', '2024-03-09 04:11:27', '2024-03-09 04:11:27');
 
 -- --------------------------------------------------------
 
@@ -391,7 +420,8 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (57, 8),
 (58, 8),
 (59, 8),
-(60, 8);
+(60, 8),
+(61, 8);
 
 -- --------------------------------------------------------
 
@@ -435,6 +465,18 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `addre
 --
 ALTER TABLE `amenities`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -544,13 +586,13 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -562,7 +604,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `property_types`
 --
 ALTER TABLE `property_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
