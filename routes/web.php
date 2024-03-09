@@ -104,6 +104,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/permission/permission_import','permission_import')->name('permission.import');
         Route::post('/permission/store_import_data','store_import_data')->name('permission.store_import_data');
         Route::get('/permission/export','permission_export')->name('permission.export');
+        Route::get('/permission/permission_pdf_download','permission_pdf_download')->name('permission.permission_pdf_download');
     });
 });
 

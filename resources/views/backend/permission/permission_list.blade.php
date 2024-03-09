@@ -7,10 +7,13 @@
                 <a href="{{route('permission.permission_add')}}" class="btn btn-inverse-info">Add Permission</a>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->can('permission.import'))    &nbsp;
-                <a href="{{route('permission.import')}}" class="btn btn-inverse-warning">Import</a>
+                <a href="{{route('permission.import')}}" class="btn btn-inverse-warning">Import</a>&nbsp;
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->can('permission.export'))
-                <a href="{{route('permission.export')}}" class="btn btn-inverse-danger">Export</a>
+                <a href="{{route('permission.export')}}" class="btn btn-inverse-danger">Export</a>&nbsp;
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->can('permission.permission_pdf_download'))
+                        <a href="{{route('permission.permission_pdf_download')}}" class="btn btn-inverse-success" target="_blank">Export PDF</a>
                 @endif
             </ol>
         </nav>

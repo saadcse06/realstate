@@ -55,9 +55,17 @@ class AdminController extends Controller
         foreach ($data as $key=>$val){
             $finalData[$key]=count($val);
         }
-        //return response()->json($finalData);
+        $cntData= array();
+        $dateData= array();
+        foreach ($finalData as $k=>$row){
+            $cntData[]=$row;
+            $dateData[]=$k;
+        }
+        $dateData = json_decode(json_encode($dateData),true);
+        $cntData = json_decode(json_encode($cntData),true);
+        //return response()->json($cntData);
 
-        return view('admin.index', compact('user','type', 'aminity', 'finalData'));
+        return view('admin.index', compact('user','type', 'aminity', 'cntData', 'dateData'));
     }
 
     public function admin_profile(){

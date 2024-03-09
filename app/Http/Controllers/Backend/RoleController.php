@@ -13,12 +13,13 @@ use App\Models\User;
 Use App\Models\Group;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class RoleController extends Controller
 {
     public function permission_list(){
-        $permision = Cache::remember('permission', 15, function (){
+           $permision = Cache::remember('permission', 15, function (){
            return Permission::all();
         });
       //$permision= Permission::all();
@@ -82,6 +83,13 @@ class RoleController extends Controller
 
     public function permission_export(){
         return Excel::download(new PermissionExport, 'permission.xlsx');
+    }
+
+    public function permission_pdf_download(){
+        $permision= Permission::get();
+        $pdf = Pdf::loadView('backend.permission.permission_pdf',['permission'=>$permision]);
+        return $pdf->stream(); //open file in browser
+        //return $pdf->download('permission.pdf');   //download file by name permission.pdf
     }
 
     //role Crud Start Here
