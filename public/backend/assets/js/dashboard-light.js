@@ -488,9 +488,13 @@ $(function() {
 
 
 
-
-  // Monthly Sales Chart
-  if($('#monthlySalesChart').length) {
+  // Monthly Report Chart
+  if($('#monthlyReportChart').length) {
+    var cntData = $("#cntData").val();
+    var dateData = $("#dateData").val();
+    cntData = $.parseJSON(cntData);
+    dateData = $.parseJSON(dateData);
+    console.log(cntData);
     var options = {
       chart: {
         type: 'bar',
@@ -508,10 +512,10 @@ $(function() {
       tooltip: {
         theme: 'light'
       },
-      colors: [colors.primary],  
+      colors: [colors.primary],
       fill: {
         opacity: .9
-      } , 
+      } ,
       grid: {
         padding: {
           bottom: -4
@@ -524,12 +528,13 @@ $(function() {
         }
       },
       series: [{
-        name: 'Sales',
-        data: [152,109,93,113,126,161,188,143,102,113,116,124]
+        name: 'Property Types',
+        //data: [2,2,1,2]
+        data: cntData
       }],
       xaxis: {
         type: 'datetime',
-        categories: ['01/01/2022','02/01/2022','03/01/2022','04/01/2022','05/01/2022','06/01/2022','07/01/2022', '08/01/2022','09/01/2022','10/01/2022', '11/01/2022', '12/01/2022'],
+        categories: dateData,
         axisBorder: {
           color: colors.gridBorder,
         },
@@ -539,7 +544,7 @@ $(function() {
       },
       yaxis: {
         title: {
-          text: 'Number of Sales',
+          text: 'Number of Property Types',
           style:{
             size: 9,
             color: colors.muted
@@ -578,11 +583,11 @@ $(function() {
         },
       },
     }
-    
-    var apexBarChart = new ApexCharts(document.querySelector("#monthlySalesChart"), options);
+
+    var apexBarChart = new ApexCharts(document.querySelector("#monthlyReportChart"), options);
     apexBarChart.render();
   }
-  // Monthly Sales Chart - END
+  //  monthlyReportChart Chart - END
 
 
 
