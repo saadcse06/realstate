@@ -59,7 +59,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(PropertyTypeController::class)->group(function (){
       Route::get('/type/type_list','type_list')->name('type.type_list')->middleware('permission:type.type_list');
       Route::get('/type/type_add','add_type')->name('type.type_add')->middleware('permission:type.type_add');
-      Route::get('/type/edit/{id}','edit_type')->name('type.edit')->middleware('permission:type.edit');
+      Route::get('/type/edit_type/{id}','edit_type')->name('type.edit')->middleware('permission:type.edit');
       Route::post('/type/store','store_type')->name('type.store')->middleware('permission:type.store');
       Route::post('/type/update','update_type')->name('type.update')->middleware('permission:type.update');
       Route::get('/type/destroy/{id}','destroy_type')->name('type.destroy')->middleware('permission:type.destroy');
@@ -72,7 +72,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(AmenityController::class)->group(function (){
         Route::get('/amentiy/amentiy_list','amentiy_list')->name('amenity.amenity_list')->middleware('permission:amenity.amenity_list');
         Route::get('/amentiy/create','add_amentiy')->name('amenity.create')->middleware('permission:amenity.create');
-        Route::get('/amentiy/edit/{id}','edit_amenity')->name('amenity.edit')->middleware('permission:amenity.edit');
+        Route::get('/amentiy/edit_amenity/{id}','edit_amenity')->name('amenity.edit')->middleware('permission:amenity.edit');
         Route::post('/amentiy/store','store_amenity')->name('amenity.store')->middleware('permission:amenity.store');
         Route::post('/amentiy/update','update_amentiy')->name('amenity.update')->middleware('permission:amenity.update');
         Route::get('/amentiy/destroy/{id}','destroy_amentiy')->name('amenity.destroy')->middleware('permission:amenity.destroy');
@@ -86,7 +86,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/group/group_list','group_list')->name('group.group_list');
         Route::get('/group/group_add','group_add')->name('group.group_add');
         Route::post('/group/store','store')->name('group.store');
-        Route::get('/group/edit/{id}','group_edit')->name('group.edit');
+        Route::get('/group/group_edit/{id}','group_edit')->name('group.edit');
         Route::post('/group/update/','group_update')->name('group.update');
         Route::get('/group/destroy/{id}','destroy_group')->name('group.destroy');
     });
@@ -98,7 +98,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/permission/permission_list','permission_list')->name('permission.permission_list');
         Route::get('/permission/permission_add','permission_add')->name('permission.permission_add');
         Route::post('/permission/store','permission_store')->name('permission.store');
-        Route::get('/permission/edit/{id}','permission_edit')->name('permission.edit');
+        Route::get('/permission/permission_edit/{id}','permission_edit')->name('permission.edit');
         Route::post('/permission/update','permission_update')->name('permission.update');
         Route::get('/permission/destroy/{id}','destroy_permission')->name('permission.destroy');
         Route::get('/permission/permission_import','permission_import')->name('permission.import');
@@ -114,7 +114,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/role/role_list','role_list')->name('role.role_list');
         Route::get('/role/role_add','role_add')->name('role.role_add');
         Route::post('/role/store','role_store')->name('role.store');
-        Route::get('/role/edit/{id}','role_edit')->name('role.edit');
+        Route::get('/role/role_edit/{id}','role_edit')->name('role.edit');
         Route::post('/role/update','role_update')->name('role.update');
         Route::get('/role/destroy/{id}','destroy_role')->name('role.destroy');
         Route::get('/role/all_role_permission','all_role_permission')->name('all.role.permission');
@@ -132,7 +132,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/admin_user_list','admin_user_list')->name('admin.admin_list');
         Route::get('/admin/admin_user_add','admin_user_add')->name('admin.admin_add');
         Route::post('/admin/store','admin_user_store')->name('admin.store');
-        Route::get('/admin/edit/{id}','admin_user_edit')->name('admin.edit');
+        Route::get('/admin/admin_user_edit/{id}','admin_user_edit')->name('admin.edit');
         Route::get('/admin/delete/{id}','admin_user_destroy')->name('admin.destroy');
         Route::post('/admin/update','admin_user_update')->name('admin.update');
     });

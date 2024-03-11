@@ -139,10 +139,51 @@ class AdminController extends Controller
 
     //Admin Use Method
 
-    public function admin_user_list(){
-      $allAdmin = User::where('role','admin')->get();
-      //dd($allAdmin);
-      return view('backend.adminuser.admin_list',compact('allAdmin'));
+    public function admin_user_list(Request $request){
+
+      if($request->name && !$request->status && !$request->start_date && !$request->end_date){
+          $allAdmin = User::where('name','LIKE','%'.$request->name.'%')->get();
+      }elseif($request->status && !$request->name && !$request->start_date && !$request->end_date){
+          $allAdmin = User::where('status','=',$request->status)->get();
+      }elseif($request->name && $request->status && !$request->start_date && !$request->end_date){
+          $allAdmin = User::where('name', 'LIKE', '%' . $request->name . '%')
+              ->where('status', '=', $request->status)
+              ->get();
+      }elseif (!empty($request->start_date) && !empty($request->end_date) && !$request->status && !$request->name) {
+          $start_date = $request->start_date;
+          $end_date = $request->end_date;
+          $allAdmin = User::WhereDate('created_at','>=',$start_date)
+              ->whereDate('created_at','<=',$end_date)
+              ->get();
+      }elseif (!empty($request->start_date) && !empty($request->end_date) && $request->status) {
+          $start_date = $request->start_date;
+          $end_date = $request->end_date;
+          $allAdmin = User::WhereDate('created_at','>=',$start_date)
+              ->whereDate('created_at','<=',$end_date)
+              ->where('status', '=', $request->status)
+              ->get();
+      }elseif (!empty($request->start_date) && !empty($request->end_date) && $request->name ) {
+          $start_date = $request->start_date;
+          $end_date = $request->end_date;
+          $allAdmin = User::WhereDate('created_at','>=',$start_date)
+              ->whereDate('created_at','<=',$end_date)
+              ->where('name','LIKE','%'.$request->name.'%')
+              ->get();
+      }elseif (!empty($request->start_date) && !empty($request->end_date) && $request->name && $request->status) {
+          //echo 'saad';die;
+          $start_date = $request->start_date;
+          $end_date = $request->end_date;
+          $allAdmin = User::WhereDate('created_at','>=',$start_date)
+              ->whereDate('created_at','<=',$end_date)
+              ->where('name','LIKE','%'.$request->name.'%')
+              ->where('status', '=', $request->status)
+              ->get();
+      }else{
+          $allAdmin = User::where('role','admin')->get();
+      }
+
+      //return response()->json($status);
+      return view('backend.adminuser.admin_list',compact('allAdmin', 'request'));
     }
 
     public function admin_user_add(){

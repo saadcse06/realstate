@@ -7,6 +7,34 @@
                     <a href="{{route('admin.admin_add')}}" class="btn btn-inverse-info">Add Admin User</a>&nbsp;&nbsp;
                 @endif
             </ol>
+            <form action=" {{ route('admin.admin_list') }}" method="get">
+                @csrf
+                <div class="row pb-3">
+                    <div class="col-md-2">
+                        <label> Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ $request->name }}">
+                    </div>
+                    <div class="col-md-2">
+                        <label> Status</label>
+                        <select name="status" id="status" class="form-select">
+                            <option disabled selected>Select Status</option>
+                            <option value="active" @if($request->status=='active') selected @endif>Active</option>
+                            <option value="inactive" @if($request->status=='inactive') selected @endif>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label> Start Date</label>
+                        <input type="date" name="start_date" class="form-control" value="{{ $request->start_date }}">
+                    </div>
+                    <div class="col-md-2">
+                        <label> End Date</label>
+                        <input type="date" name="end_date" class="form-control" value="{{ $request->end_date }}">
+                    </div>
+                    <div class="col-md-1 pt-4">
+                        <input type="submit" class="btn btn-primary" value="Filter">
+                    </div>
+                </div>
+            </form>
         </nav>
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">

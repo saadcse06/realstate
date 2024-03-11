@@ -22,11 +22,10 @@ class RoleController extends Controller
     public function permission_list(Request $request){
         $start_date= $end_date = null;
         //return response()->json($request);
-        if(!empty($request->isNotEmpty)){
+        if(!empty($request->start_date)&& !empty($request->end_date)){
             $start_date=$request->start_date;
             $end_date=$request->end_date;
             $permision = Permission::WhereDate('created_at','>=',$start_date)->whereDate('created_at','<=',$end_date)->get();
-            return response()->json($permision);
         }else{
             $permision = Cache::remember('permission', 15, function (){
                 return Permission::all();

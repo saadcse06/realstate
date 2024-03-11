@@ -17,14 +17,15 @@
                 @endif
             </ol>
             <form action=" {{ route('permission.permission_list') }}" method="get">
+                @csrf
                 <div class="row pb-3">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label> Start Date</label>
-                        <input type="date" name="start_date" class="form-control">
+                        <input type="date" name="start_date" class="form-control" value="{{ $request->start_date }}">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label> End Date</label>
-                        <input type="date" name="end_date" class="form-control">
+                        <input type="date" name="end_date" class="form-control" value="{{ $request->end_date }}">
                     </div>
                     {{--<div class="col-md-2 form-group">--}}
                         {{--<label for="">Permission</label>--}}
