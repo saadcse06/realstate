@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Exports\PermissionExport;
 use App\Imports\PermissionImport;
 use App\Http\Controllers\Controller;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 Use Spatie\Permission\Models\Permission;
@@ -18,12 +19,22 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class RoleController extends Controller
 {
-    public function permission_list(){
-           $permision = Cache::remember('permission', 15, function (){
-           return Permission::all();
-        });
+    public function permission_list(Request $request){
+        $start_date= $end_date = null;
+        //return response()->json($request);
+        if(!empty($request->isNotEmpty)){
+            $start_date=$request->start_date;
+            $end_date=$request->end_date;
+            $permision = Permission::WhereDate('created_at','>=',$start_date)->whereDate('created_at','<=',$end_date)->get();
+            return response()->json($permision);
+        }else{
+            $permision = Cache::remember('permission', 15, function (){
+                return Permission::all();
+            });
+        }
+       // return response()->json($permision);
       //$permision= Permission::all();
-      return view('backend.permission.permission_list',compact('permision'));
+      return view('backend.permission.permission_list',compact('permision','request'));
     }
 
     public function permission_add(){

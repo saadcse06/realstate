@@ -16,6 +16,29 @@
                         <a href="{{route('permission.permission_pdf_download')}}" class="btn btn-inverse-success" target="_blank">Export PDF</a>
                 @endif
             </ol>
+            <form action=" {{ route('permission.permission_list') }}" method="get">
+                <div class="row pb-3">
+                    <div class="col-md-3">
+                        <label> Start Date</label>
+                        <input type="date" name="start_date" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label> End Date</label>
+                        <input type="date" name="end_date" class="form-control">
+                    </div>
+                    {{--<div class="col-md-2 form-group">--}}
+                        {{--<label for="">Permission</label>--}}
+                        {{--<select name="permission_id[]" class="form-control" multiple>--}}
+                        {{--@foreach (\Spatie\Permission\Models\Permission::all() as $item)--}}
+                        {{--<option value="{{ $item->id }}" {{ !is_null($request->permission_id) ? in_array($item->id,$request->permission_id) ? 'selected' : '' : '' }}>{{ $item->name }}</option>--}}
+                        {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
+                    <div class="col-md-1 pt-4">
+                        <input type="submit" class="btn btn-primary" value="Filter">
+                    </div>
+                </div>
+            </form>
         </nav>
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
