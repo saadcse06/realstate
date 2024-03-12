@@ -19,6 +19,12 @@
                                     <input type="text" name="amenitis_name" id="amenitis_name" value="{{ $data->amenitis_name }}" class="form-control"
                                            autocomplete="off">
                                 </div>
+                                <div class="form-group mb-3">
+                                    <label for="Amenity Description" class="form-label">Description</label>
+                                    <textarea class="form-control summernote" name="description" id="description"
+                                              placeholder="Description" cols="30" rows="10" style="background-color: white !important;"
+                                              value="{{ $data->description }}"></textarea>
+                                </div>
                                 <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>
 

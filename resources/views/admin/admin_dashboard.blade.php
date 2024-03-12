@@ -8,7 +8,6 @@
     <meta name="author" content="sb">
     <meta name="keywords"
           content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
     <title>Admin Panel - RealEstate</title>
 
     <!-- Fonts -->
@@ -16,7 +15,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- End fonts -->
-
+    <style>
+        .note-editable { background-color: white; color: black; }
+    </style>
     <!-- core:css -->
     <link rel="stylesheet" href="{{asset('backend/assets/vendors/core/core.css')}}">
     <!-- endinject -->
@@ -39,6 +40,9 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.png')}}"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <!-- summernote -->
+    {{--<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">--}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="main-wrapper">
@@ -88,6 +92,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{asset('backend/assets/js/code/code.js')}}"></script>
 <script src="{{asset('backend/assets/js/code/validate.min.js')}}"></script>
+<!-- Summernote -->
+{{--<script src="{{asset('backend/assets/js/code/summernote-bs4.min.js')}}"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script>
     @if(Session::has('message'))
@@ -111,5 +118,29 @@
     }
     @endif
 </script>
+<script>
+    $('.summernote').summernote({
+        //placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+</script>
+
+{{--<script>--}}
+    {{--$(function () {--}}
+        {{--// Summernote--}}
+        {{--$('.summernote').summernote()--}}
+
+    {{--})--}}
+{{--</script>--}}
 </body>
 </html>
