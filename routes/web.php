@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\AmenityController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\GroupController;
+use App\Http\Controllers\AjaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,8 @@ use App\Http\Controllers\Backend\GroupController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect(route('admin.login'));
 });
 
 Route::get('/dashboard', function () {
@@ -137,3 +139,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::post('/admin/update','admin_user_update')->name('admin.update');
     });
 //});
+
+//ajax Route
+//Route::get('/admin/add_mode', 'AjaxController@add_mode');
+Route::get('/ajax/add_mode', [AjaxController::class, 'add_mode']);

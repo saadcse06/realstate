@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <nav class="navbar">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
@@ -71,12 +72,13 @@
                                 <span>Change Password</span>
                             </a>
                         </li>
-                        {{--<li class="dropdown-item py-2">--}}
-                            {{--<a href="javascript:;" class="text-body ms-0">--}}
-                                {{--<i class="me-2 icon-md" data-feather="repeat"></i>--}}
-                                {{--<span>Switch User</span>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
+                        <li class="dropdown-item py-2">
+                            {{--<a href="#" onClick='addDarkTheme( "<?= $book->id ?>" )'>Dark Mode</a>--}}
+                            <a href="javascript:;" class="text-body ms-0" id="dark-mode" value="dark">
+                                <i class="me-2 icon-md" data-feather="repeat"></i>
+                                <span>Dark Mode</span>
+                            </a>
+                        </li>
                         <li class="dropdown-item py-2">
                             <a href="{{route('admin.logout')}}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="log-out"></i>
@@ -89,3 +91,24 @@
         </ul>
     </div>
 </nav>
+
+{{--<script>--}}
+    {{--$('#dark-mode').click(function($e){--}}
+        {{--$e.preventDefault();--}}
+        {{--$.post("/ajax/add-mode", {--}}
+            {{--"dark-mode": $(this).data('dark-mode')--}}
+        {{--});--}}
+    {{--});--}}
+{{--</script>--}}
+
+<script>
+    $(function(){
+        $('#dark-mode').click(function() {
+            $.ajax({
+                url: '/ajax/add_mode',
+                type: 'GET',
+                data: { mode_val: 'dark' },
+            });
+        });
+    });
+</script>
