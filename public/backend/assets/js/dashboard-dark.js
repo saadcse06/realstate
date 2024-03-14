@@ -489,7 +489,7 @@ $(function() {
     var dateData = $("#dateData").val();
     cntData = $.parseJSON(cntData);
     dateData = $.parseJSON(dateData);
-    console.log(cntData);
+    //console.log(cntData);
     var options = {
       chart: {
         type: 'bar',

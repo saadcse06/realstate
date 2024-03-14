@@ -156,23 +156,23 @@
                 @endif
             @endif
             @if(\Illuminate\Support\Facades\Auth::user()->can('admin.menu'))
-                <li class="nav-item nav-category">Admin User</li>
+                <li class="nav-item nav-category">User</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#admins" role="button" aria-expanded="false" aria-controls="admins">
                         <i class="link-icon" data-feather="activity"></i>
-                        <span class="link-title">Manage Admin User</span>
+                        <span class="link-title">Manage User</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
                     <div class="collapse" id="admins">
                         <ul class="nav sub-menu">
                             @if(\Illuminate\Support\Facades\Auth::user()->can('admin.admin_list'))
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.admin_list') }}" class="nav-link">All Admin User</a>
+                                    <a href="{{ route('admin.admin_list') }}" class="nav-link">All User</a>
                                 </li>
                             @endif
                             @if(\Illuminate\Support\Facades\Auth::user()->can('admin.admin_add'))
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.admin_add') }}" class="nav-link">Add Admin User</a>
+                                    <a href="{{ route('admin.admin_add') }}" class="nav-link">Add User</a>
                                 </li>
                             @endif
                         </ul>

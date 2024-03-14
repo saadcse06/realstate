@@ -138,7 +138,6 @@ class AdminController extends Controller
     }
 
     //Admin Use Method
-
     public function admin_user_list(Request $request){
 
       if($request->name && !$request->status && !$request->start_date && !$request->end_date){

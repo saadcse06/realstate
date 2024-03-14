@@ -124,7 +124,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
         $msg=array('message'=>'Role Created Successfully', 'alert-type'=>'success');
-        return redirect()->route('role.list')->with($msg);
+        return redirect()->route('role.role_list')->with($msg);
     }
 
     public function role_edit($id){
@@ -140,7 +140,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
         $msg=array('message'=>'Role Updated Successfully', 'alert-type'=>'success');
-        return redirect()->route('role.list')->with($msg);
+        return redirect()->route('role.role_list')->with($msg);
     }
     public function destroy_role($id){
         Role::findOrFail($id)->delete();

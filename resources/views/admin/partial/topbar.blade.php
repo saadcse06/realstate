@@ -74,9 +74,16 @@
                         </li>
                         <li class="dropdown-item py-2">
                             {{--<a href="#" onClick='addDarkTheme( "<?= $book->id ?>" )'>Dark Mode</a>--}}
-                            <a href="javascript:;" class="text-body ms-0" id="dark-mode" value="dark">
+                            <a href="javascript:;" class="text-body ms-0" id="dark-mode" value="1">
                                 <i class="me-2 icon-md" data-feather="repeat"></i>
                                 <span>Dark Mode</span>
+                            </a>
+                        </li>
+                        <li class="dropdown-item py-2">
+                            {{--<a href="#" onClick='addDarkTheme( "<?= $book->id ?>" )'>Dark Mode</a>--}}
+                            <a href="javascript:;" class="text-body ms-0" id="light-mode" value="0">
+                                <i class="me-2 icon-md" data-feather="anchor"></i>
+                                <span>Light Mode</span>
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
@@ -107,7 +114,23 @@
             $.ajax({
                 url: '/ajax/add_mode',
                 type: 'GET',
-                data: { mode_val: 'dark' },
+                data: { mode_val: '1' },
+                success: function (response) {
+                    location.reload();
+                },
+            });
+        });
+    });
+
+    $(function(){
+        $('#light-mode').click(function() {
+            $.ajax({
+                url: '/ajax/add_mode',
+                type: 'GET',
+                data: { mode_val: '0' },
+                success: function (response) {
+                    location.reload();
+                },
             });
         });
     });
