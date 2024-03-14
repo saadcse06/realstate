@@ -13,7 +13,9 @@
         .authlogin-side-wrapper{
             width: 100%;
             height: 100%;
-            background-image: url({{ asset('upload/login.png') }});
+			margin-top:130px;
+			background: no-repeat;
+            background-image: url({{ asset('upload/logo.jpg') }});
         }
     </style>
     <!-- Fonts -->
@@ -35,7 +37,7 @@
     <!-- endinject -->
 
     <!-- Layout styles -->
-    <link rel="stylesheet" href="{{asset('backend/assets/css/demo2/style.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/assets/css/demo1/style.css')}}">
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.ico')}}" />
