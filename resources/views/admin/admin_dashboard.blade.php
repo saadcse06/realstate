@@ -42,9 +42,8 @@
     <?php } else {?>
     <link rel="stylesheet" href="{{asset('backend/assets/css/demo1/style.css')}}">
     <?php }?>
-    @endphp
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.png')}}"/>
+    <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.ico')}}"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!-- summernote -->
     {{--<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">--}}
